@@ -1,4 +1,4 @@
-import { Machine, MachineCategory, ServiceItem, FaqItem, CompanyInfo } from '../types';
+import { Machine, MachineCategory, ServiceItem, FaqItem, CompanyInfo, TestimonialItem } from '../types';
 
 export const IMAGES = {
   hero: '/assets/hero-pZ92iVLf.jpg',
@@ -13,12 +13,22 @@ export const IMAGES = {
 
 export const COMPANY_INFO: CompanyInfo = {
   name: 'Machinery Hub',
-  tagline: 'Industrial Machinery Solutions',
-  phone: '+977 9857024409, 9824421727',
+  tagline: 'Printing & Paper Machinery',
+  about:
+    'We deal in brand-new, used and professionally refurbished machinery, helping printing presses, Notebook Making Machines, paper-product manufacturers and entrepreneurs find the right equipment for their businesses.',
+  establishedYear: '2020',
+  natureOfBusiness:
+    'Trading, Import, Supply and Distribution of New, Used and Refurbished Printing Machinery, Paper Industry Machinery and Related Equipment, including Installation, Maintenance and After-Sales Services',
+  contactPerson: 'Anand karna',
+  contactDesignation: 'Owner',
+  phone: '+977-9857024409, 9824421727',
+  phones: ['+977-9857024409', '+977-9824421727'],
   whatsapp: '9779857024409',
-  email: 'info@machineryhub.com.np',
-  address: 'Balaju Industrial District, Kathmandu, Nepal',
-  hours: 'Sun – Fri, 9:00 AM – 6:00 PM',
+  whatsappSecondary: '9779824421727',
+  email: 'karnfile@gmail.com',
+  address: 'Siddharthanagar-6, Rupandehi, Bhairahawa, Nepal',
+  mapsUrl: 'https://maps.google.com/?q=Siddharthanagar-6,+Rupandehi,+Bhairahawa,+Nepal',
+  hours: '10:00 AM – 6:00 PM',
   facebook: 'https://www.facebook.com/machineryhubbhw/',
 };
 
@@ -42,8 +52,8 @@ https://www.facebook.com/machineryhubbhw/
 
 "Your Trusted Partner for Industrial Machinery."`;
 
-export const getWhatsAppUrl = (text: string) =>
-  `https://wa.me/${COMPANY_INFO.whatsapp}?text=${encodeURIComponent(text)}`;
+export const getWhatsAppUrl = (text: string, number?: string) =>
+  `https://wa.me/${number || COMPANY_INFO.whatsapp}?text=${encodeURIComponent(text)}`;
 
 export const CATEGORIES: MachineCategory[] = [
   {
@@ -284,28 +294,59 @@ export const formatPrice = (price: number | null) =>
 
 export const SERVICES: ServiceItem[] = [
   {
-    title: 'Machine Installation',
-    desc: 'Foundation guidance, unloading, positioning and electrical connection by certified engineers.',
+    title: 'Offset Printing Machines',
+    desc: 'Supply, setup and servicing of single-color and multi-color sheet-fed offset presses for commercial publications and packaging.',
   },
   {
-    title: 'Setup & Commissioning',
-    desc: 'Calibration, trial runs and production sign-off so you start earning from day one.',
+    title: 'Paper Cutting Machines',
+    desc: 'High-precision hydraulic and program-controlled paper guillotines built for heavy-duty, clean cut operations.',
   },
   {
-    title: 'Technical Support',
-    desc: 'Phone, WhatsApp and on-site support from technicians who know your machine.',
+    title: 'Notebook Stitching Machines',
+    desc: 'Automatic and semi-automatic wire stitching, book spine pressing, and high-speed notebook assembly lines.',
   },
   {
-    title: 'Maintenance & Troubleshooting',
-    desc: 'Preventive maintenance plans and fast breakdown response to minimise downtime.',
+    title: 'Printing & Binding Equipment',
+    desc: 'Comprehensive post-press machinery including laminators, creasers, folding, and perfect binding machines.',
   },
   {
-    title: 'Operator Training',
-    desc: 'Hands-on training for your operators on safe, efficient machine operation.',
+    title: 'New & Refurbished Machinery',
+    desc: 'Carefully sourced brand-new industrial machinery and thoroughly tested, professionally refurbished pre-owned machines.',
   },
   {
-    title: 'Spare Parts Assistance',
-    desc: 'Genuine spare parts sourced and delivered quickly, with fitting support.',
+    title: 'Machine Delivery & Installation',
+    desc: 'Safe transport, unloading, precision positioning, foundation alignment, and electrical connections across Nepal.',
+  },
+  {
+    title: 'Machine Operation Training',
+    desc: 'Hands-on operator training for safe machine handling, preventive maintenance, and maximum daily output efficiency.',
+  },
+];
+
+export const INDUSTRIES = [
+  {
+    title: 'Notebook & Exercise Book Manufacturing',
+    desc: 'Turnkey solutions for reel-to-book ruling, stitching, trimming, and packaging lines for school and office registers.',
+  },
+  {
+    title: 'Commercial Offset Printing Presses',
+    desc: 'High-speed sheet-fed offset machinery for books, newspapers, magazines, flyers, and advertising media.',
+  },
+  {
+    title: 'Paper Converting & Packaging Industry',
+    desc: 'Industrial cutting, die-punching, creasing, and folder-gluing equipment for packaging manufacturers.',
+  },
+  {
+    title: 'Book Binding & Publishing Houses',
+    desc: 'Thermal laminators, book sewing, edge squaring, and adhesive binding machines for professional publishers.',
+  },
+  {
+    title: 'Corrugation & Carton Box Plants',
+    desc: 'Robust paper processing and board slitting machines designed for durable packaging carton production.',
+  },
+  {
+    title: 'Printing Startups & Entrepreneurs',
+    desc: 'Affordable refurbished machinery and end-to-end guidance to help new printing businesses start smoothly.',
   },
 ];
 
@@ -333,5 +374,35 @@ export const FAQS: FaqItem[] = [
   {
     q: 'Do you sell used machines?',
     a: 'Yes, we offer inspected and refurbished used machines. Each is tested before dispatch.',
+  },
+];
+
+export const TESTIMONIALS: TestimonialItem[] = [
+  {
+    name: 'Ramesh Adhikari',
+    role: 'Production In-charge',
+    company: 'Stationery & Register Industries',
+    location: 'Kathmandu, Nepal',
+    quote:
+      'We purchased an automatic notebook ruling and stitching line through Machinery Hub. Anand ji and his technical team handled foundation guidance, safe unloading, and thorough operator training. Highly dependable machinery!',
+    rating: 5,
+  },
+  {
+    name: 'Sunil Shrestha',
+    role: 'Managing Director',
+    company: 'Quality Offset Printers',
+    location: 'Butwal / Bhairahawa',
+    quote:
+      'Finding trustworthy refurbished offset presses in Rupandehi was tough until we connected with Machinery Hub. The machine was thoroughly serviced, aligned, and commissioned on our floor without issues.',
+    rating: 5,
+  },
+  {
+    name: 'Binod Thapa',
+    role: 'Proprietor',
+    company: 'Packaging & Board Works',
+    location: 'Biratnagar, Nepal',
+    quote:
+      'Their hydraulic paper cutting machines and prompt spare parts support keep our plant running without downtime. Genuine people who stand by their service promise.',
+    rating: 5,
   },
 ];

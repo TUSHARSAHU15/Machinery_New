@@ -79,6 +79,8 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({ defaultCategory, machi
       '',
       'Machinery Hub',
       '📞 +977 9857024409, 9824421727',
+      '📧 karnfile@gmail.com',
+      '📍 Siddharthanagar-6, Rupandehi, Bhairahawa, Nepal',
       'अधिक जानकारी को लागी हाम्रो Facebook page:',
       'https://www.facebook.com/machineryhubbhw/',
       '',

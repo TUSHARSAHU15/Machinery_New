@@ -33,13 +33,30 @@ export interface FaqItem {
   a: string;
 }
 
+export interface TestimonialItem {
+  name: string;
+  role: string;
+  company?: string;
+  location: string;
+  quote: string;
+  rating: number;
+}
+
 export interface CompanyInfo {
   name: string;
   tagline: string;
+  about: string;
+  establishedYear: string;
+  natureOfBusiness: string;
+  contactPerson: string;
+  contactDesignation: string;
   phone: string;
+  phones: string[];
   whatsapp: string;
+  whatsappSecondary: string;
   email: string;
   address: string;
+  mapsUrl: string;
   hours: string;
   facebook: string;
 }

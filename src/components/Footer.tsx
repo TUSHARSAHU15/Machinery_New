@@ -13,8 +13,11 @@ export const Footer: React.FC = () => {
         <div className="space-y-4">
           <Logo light />
           <p className="text-sm leading-relaxed">
-            Your trusted partner for notebook manufacturing, offset printing and paper processing
-            machinery across Nepal.
+            Trading, import, supply and distribution of brand-new, used and refurbished printing and
+            paper machinery across Nepal.
+          </p>
+          <p className="text-xs text-steel-muted/80">
+            Proprietor: <span className="text-steel-foreground font-semibold">{COMPANY_INFO.contactPerson}</span> ({COMPANY_INFO.contactDesignation})
           </p>
           <div className="pt-2">
             <a
@@ -65,17 +68,37 @@ export const Footer: React.FC = () => {
         {/* Contact Info */}
         <div className="space-y-3 text-sm">
           <h4 className="mb-4 font-bold text-steel-foreground">Get in Touch</h4>
-          <p className="flex gap-2">
+          <a
+            href={COMPANY_INFO.mapsUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="flex gap-2 transition-colors hover:text-primary"
+          >
             <MapPin className="h-4 w-4 shrink-0 text-primary" />
-            {COMPANY_INFO.address}
-          </p>
-          <p className="flex gap-2">
+            <span>{COMPANY_INFO.address}</span>
+          </a>
+          <div className="flex gap-2">
             <Phone className="h-4 w-4 shrink-0 text-primary" />
-            <span>{COMPANY_INFO.phone}</span>
-          </p>
+            <div className="flex flex-col gap-1">
+              {COMPANY_INFO.phones.map((phone) => (
+                <a
+                  key={phone}
+                  href={`tel:${phone.replace(/\s+/g, '')}`}
+                  className="transition-colors hover:text-primary"
+                >
+                  {phone}
+                </a>
+              ))}
+            </div>
+          </div>
           <p className="flex gap-2">
             <Mail className="h-4 w-4 shrink-0 text-primary" />
-            {COMPANY_INFO.email}
+            <a
+              href={`mailto:${COMPANY_INFO.email}`}
+              className="transition-colors hover:text-primary"
+            >
+              {COMPANY_INFO.email}
+            </a>
           </p>
           <p className="flex gap-2">
             <Clock className="h-4 w-4 shrink-0 text-primary" />
@@ -86,9 +109,17 @@ export const Footer: React.FC = () => {
 
       {/* Bottom Copyright */}
       <div className="border-t border-steel-foreground/10">
-        <div className="container-x flex flex-col justify-between gap-2 py-5 text-xs sm:flex-row">
-          <span>© {new Date().getFullYear()} Machinery Hub. All rights reserved.</span>
-          <span>Industrial Machinery Solutions · Nepal</span>
+        <div className="container-x flex flex-col justify-between items-center gap-3 py-5 text-xs sm:flex-row">
+          <span>© {new Date().getFullYear()} Machinery Hub · Siddharthanagar-6, Bhairahawa, Nepal. All rights reserved.</span>
+          <div className="flex items-center gap-4">
+            <Link to="/privacy" className="hover:text-primary transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="opacity-40">•</span>
+            <Link to="/terms" className="hover:text-primary transition-colors">
+              Terms & Conditions
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

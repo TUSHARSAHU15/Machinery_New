@@ -25,12 +25,25 @@ export const Header: React.FC = () => {
           <div className="flex gap-6">
             <span className="flex items-center gap-1.5">
               <Phone className="h-3.5 w-3.5 text-primary" />
-              {COMPANY_INFO.phone}
+              {COMPANY_INFO.phones.map((phone, idx) => (
+                <React.Fragment key={phone}>
+                  {idx > 0 && <span className="opacity-40">/</span>}
+                  <a
+                    href={`tel:${phone.replace(/\s+/g, '')}`}
+                    className="transition-colors hover:text-primary"
+                  >
+                    {phone}
+                  </a>
+                </React.Fragment>
+              ))}
             </span>
-            <span className="flex items-center gap-1.5">
+            <a
+              href={`mailto:${COMPANY_INFO.email}`}
+              className="flex items-center gap-1.5 transition-colors hover:text-primary"
+            >
               <Mail className="h-3.5 w-3.5 text-primary" />
               {COMPANY_INFO.email}
-            </span>
+            </a>
           </div>
           <div className="flex items-center gap-6">
             <a

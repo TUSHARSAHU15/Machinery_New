@@ -8,17 +8,18 @@ import {
   Truck,
   ShieldCheck,
   Factory,
+  Star,
 } from 'lucide-react';
-import { IMAGES, CATEGORIES, MACHINES, getWhatsAppUrl } from '../data/machinery';
+import { IMAGES, CATEGORIES, MACHINES, INDUSTRIES, TESTIMONIALS, getWhatsAppUrl } from '../data/machinery';
 import { MachineCard } from '../components/MachineCard';
 import { SectionHeader } from '../components/SectionHeader';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
 
 const STATS = [
-  { v: '15+', l: 'Years of experience' },
-  { v: '500+', l: 'Machines installed' },
-  { v: '300+', l: 'Happy clients' },
-  { v: '24/7', l: 'Support response' },
+  { v: '2020', l: 'Year Established' },
+  { v: '500+', l: 'Machines delivered' },
+  { v: '300+', l: 'Satisfied businesses' },
+  { v: '24/7', l: 'Technical assistance' },
 ];
 
 const WHY_CHOOSE = [
@@ -130,8 +131,8 @@ export const HomePage: React.FC = () => {
             className="rounded-xl shadow-card"
           />
           <div className="absolute -bottom-6 -right-4 hidden rounded-xl bg-amber-gradient p-6 text-primary-foreground shadow-glow sm:block">
-            <p className="font-display text-4xl font-black">15+</p>
-            <p className="text-sm font-semibold">Years serving industry</p>
+            <p className="font-display text-4xl font-black">2020</p>
+            <p className="text-sm font-semibold">Established · Bhairahawa</p>
           </div>
         </div>
         <div>
@@ -142,9 +143,9 @@ export const HomePage: React.FC = () => {
             </h2>
           </div>
           <p className="mt-5 leading-relaxed text-muted-foreground">
-            Machinery Hub supplies reliable industrial machines to notebook manufacturers,
-            printing presses and paper converters across Nepal. From choosing the right capacity to
-            installation, training and after-sales service, we stay with you at every step.
+            We deal in brand-new, used and professionally refurbished machinery, helping printing
+            presses, notebook making factories, paper-product manufacturers and entrepreneurs find
+            the right equipment for their businesses.
           </p>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2 text-foreground">
             {[
@@ -230,6 +231,32 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* Industries We Serve Section */}
+      <section className="border-t border-border/80 bg-secondary py-24">
+        <div className="container-x">
+          <SectionHeader
+            center
+            eyebrow="Industries We Serve"
+            title="Tailored Machinery for Key Sectors"
+            subtitle="From school stationery manufacturing to high-output commercial printing presses across Nepal."
+          />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {INDUSTRIES.map((ind, i) => (
+              <div
+                key={ind.title}
+                className="rounded-xl border border-border bg-card p-6 shadow-card transition hover:border-primary/50 hover:-translate-y-1"
+              >
+                <span className="font-display text-2xl font-black text-primary/40">
+                  0{i + 1}
+                </span>
+                <h3 className="mt-3 text-lg font-bold text-foreground">{ind.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{ind.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us Section */}
       <section className="relative overflow-hidden bg-steel-gradient py-24">
         <div className="absolute inset-0 grid-lines" />
@@ -254,6 +281,42 @@ export const HomePage: React.FC = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials / Client Trust Section */}
+      <section className="container-x py-24">
+        <SectionHeader
+          center
+          eyebrow="Client Stories & Trust"
+          title="What Our Clients Say Across Nepal"
+          subtitle="From Kathmandu to Biratnagar, printing presses and notebook manufacturers depend on Machinery Hub."
+        />
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {TESTIMONIALS.map((t) => (
+            <div
+              key={t.name}
+              className="flex flex-col justify-between rounded-xl border border-border bg-card p-7 shadow-card transition hover:border-primary/50"
+            >
+              <div>
+                <div className="flex gap-1 text-primary">
+                  {[...Array(t.rating)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                  ))}
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground italic">
+                  "{t.quote}"
+                </p>
+              </div>
+              <div className="mt-6 border-t border-border/60 pt-4">
+                <p className="font-bold text-foreground">{t.name}</p>
+                <p className="text-xs text-muted-foreground">
+                  {t.role}{t.company ? ` · ${t.company}` : ''}
+                </p>
+                <p className="mt-1 text-[11px] font-semibold text-primary">{t.location}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

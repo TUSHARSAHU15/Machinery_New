@@ -1,24 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Wrench,
-  Settings2,
-  Headset,
-  ShieldCheck,
+  Printer,
+  Scissors,
+  BookOpen,
+  Layers,
+  Sparkles,
+  Truck,
   GraduationCap,
-  Package,
+  Wrench,
+  CheckCircle2,
 } from 'lucide-react';
 import { PageHeader } from '../components/PageHeader';
 import { SectionHeader } from '../components/SectionHeader';
-import { IMAGES, SERVICES } from '../data/machinery';
+import { IMAGES, SERVICES, INDUSTRIES } from '../data/machinery';
 
 const SERVICE_ICONS = [
-  Wrench,
-  Settings2,
-  Headset,
-  ShieldCheck,
+  Printer,
+  Scissors,
+  BookOpen,
+  Layers,
+  Sparkles,
+  Truck,
   GraduationCap,
-  Package,
+  Wrench,
 ];
 
 const PROCESS_STEPS = [
@@ -32,9 +37,9 @@ export const ServicesPage: React.FC = () => {
   return (
     <>
       <PageHeader
-        eyebrow="Our Services"
-        title="Support that keeps your production running"
-        subtitle="From the first bolt to years of operation — our engineers are with you."
+        eyebrow="Our Services & Machinery Solutions"
+        title="Comprehensive Machinery, Delivery & Engineering Support"
+        subtitle="From equipment sourcing and supply to nationwide delivery, commissioning, and operator training."
         image={IMAGES.service}
       />
 
@@ -56,6 +61,33 @@ export const ServicesPage: React.FC = () => {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Industries We Serve Section */}
+      <section className="border-t border-border/80 bg-secondary py-20">
+        <div className="container-x">
+          <SectionHeader
+            eyebrow="Industries We Serve"
+            title="Target Sectors & Industrial Capabilities"
+            subtitle="Providing precision machinery for printing, packaging, and notebook manufacturing enterprises."
+          />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {INDUSTRIES.map((ind, idx) => (
+              <div
+                key={ind.title}
+                className="flex flex-col justify-between rounded-xl border border-border bg-card p-6 shadow-card"
+              >
+                <div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
+                    <h3 className="text-base font-bold text-foreground">{ind.title}</h3>
+                  </div>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{ind.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -84,7 +116,7 @@ export const ServicesPage: React.FC = () => {
         <SectionHeader
           center
           eyebrow="Need help?"
-          title="Book installation or a service visit"
+          title="Book installation or request a machine quote"
         />
         <Link
           to="/contact"
