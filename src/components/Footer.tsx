@@ -1,123 +1,152 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
-import { Logo } from './Logo';
-import { COMPANY_INFO, CATEGORIES } from '../data/machinery';
-import { NAV_LINKS } from './Header';
+import { MapPin, Phone, Mail, Clock, ShieldCheck, Factory } from 'lucide-react';
+import { COMPANY_INFO, getWhatsAppUrl } from '../data/machinery';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-steel-gradient text-steel-muted">
-      <div className="container-x grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
-        {/* Company Info */}
-        <div className="space-y-4">
-          <Logo light />
-          <p className="text-sm leading-relaxed">
-            Trading, import, supply and distribution of brand-new, used and refurbished printing and
-            paper machinery across Nepal.
-          </p>
-          <p className="text-xs text-steel-muted/80">
-            Proprietor: <span className="text-steel-foreground font-semibold">{COMPANY_INFO.contactPerson}</span> ({COMPANY_INFO.contactDesignation})
-          </p>
-          <div className="pt-2">
-            <a
-              href={COMPANY_INFO.facebook}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-steel px-3.5 py-2 text-xs font-bold text-steel-foreground hover:text-primary transition"
-            >
-              <svg className="h-4 w-4 fill-current text-primary" viewBox="0 0 24 24">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-              </svg>
-              Follow on Facebook
-            </a>
+    <footer className="w-full bg-white border-t border-[#eef2f5] mt-8 text-[#8997a5]">
+      {/* Information Row */}
+      <div className="p-6 md:p-8 border-b border-[#f1f5f9] bg-[#F5FAFE]/60">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-xs leading-relaxed">
+          {/* Col 1: About Brief */}
+          <div className="space-y-2">
+            <h4 className="font-heading text-sm font-bold uppercase tracking-wider text-[#435363]">
+              Machinery Hub
+            </h4>
+            <p className="text-[#8997a5]">
+              Nepal’s leading importer & supplier of notebook manufacturing machinery, pre-owned offset printing machinery, and comprehensive bindery solutions.
+            </p>
+            <p className="font-semibold text-[#004669]">
+              Director: {COMPANY_INFO.contactPerson} (20+ Years Experience)
+            </p>
+            <p className="text-[11px] text-[#076290] italic">
+              "Quality Machinery. Practical Expertise. Trusted Solutions."
+            </p>
           </div>
-        </div>
 
-        {/* Quick Links */}
-        <div>
-          <h4 className="mb-4 font-bold text-steel-foreground">Quick Links</h4>
-          <ul className="space-y-2 text-sm">
-            {NAV_LINKS.map((link) => (
-              <li key={link.to}>
-                <Link to={link.to} className="transition-colors hover:text-primary">
-                  {link.label}
+          {/* Col 2: Services / Machinery */}
+          <div>
+            <h4 className="font-heading text-sm font-bold uppercase tracking-wider text-[#435363] mb-2">
+              Our Machinery
+            </h4>
+            <ul className="space-y-1.5">
+              <li>
+                <Link to="/stock-list?cat=offset" className="hover:text-[#004669] transition">
+                  » Pre-Owned Offset Presses (1-8 Colours)
                 </Link>
               </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Machinery Categories */}
-        <div>
-          <h4 className="mb-4 font-bold text-steel-foreground">Machinery</h4>
-          <ul className="space-y-2 text-sm">
-            {CATEGORIES.filter((c) => c.slug !== 'other').map((cat) => (
-              <li key={cat.slug}>
-                <Link
-                  to={`/machines?category=${cat.slug}`}
-                  className="transition-colors hover:text-primary"
-                >
-                  {cat.short}
+              <li>
+                <Link to="/stock-list?cat=notebook" className="hover:text-[#004669] transition">
+                  » Stallion 3-in-1 Notebook Machines
                 </Link>
               </li>
-            ))}
-          </ul>
-        </div>
+              <li>
+                <Link to="/stock-list?cat=notebook" className="hover:text-[#004669] transition">
+                  » Chetan & Harbhajan Notebook Lines
+                </Link>
+              </li>
+              <li>
+                <Link to="/stock-list?cat=offset" className="hover:text-[#004669] transition">
+                  » Authorized Dealer: Autoprint & Sahil
+                </Link>
+              </li>
+              <li>
+                <Link to="/stock-list?cat=cutting" className="hover:text-[#004669] transition">
+                  » Polar & Itoh Paper Cutters
+                </Link>
+              </li>
+              <li>
+                <Link to="/stock-list?cat=folding" className="hover:text-[#004669] transition">
+                  » Stahl & MBO Paper Folders
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-        {/* Contact Info */}
-        <div className="space-y-3 text-sm">
-          <h4 className="mb-4 font-bold text-steel-foreground">Get in Touch</h4>
-          <a
-            href={COMPANY_INFO.mapsUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="flex gap-2 transition-colors hover:text-primary"
-          >
-            <MapPin className="h-4 w-4 shrink-0 text-primary" />
-            <span>{COMPANY_INFO.address}</span>
-          </a>
-          <div className="flex gap-2">
-            <Phone className="h-4 w-4 shrink-0 text-primary" />
-            <div className="flex flex-col gap-1">
-              {COMPANY_INFO.phones.map((phone) => (
-                <a
-                  key={phone}
-                  href={`tel:${phone.replace(/\s+/g, '')}`}
-                  className="transition-colors hover:text-primary"
-                >
-                  {phone}
+          {/* Col 3: Contact Details */}
+          <div>
+            <h4 className="font-heading text-sm font-bold uppercase tracking-wider text-[#435363] mb-2">
+              Head Office
+            </h4>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-2">
+                <MapPin className="h-4 w-4 shrink-0 text-[#076290] mt-0.5" />
+                <span>{COMPANY_INFO.address}</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone className="h-4 w-4 shrink-0 text-[#076290]" />
+                <a href="tel:+9779857024409" className="hover:text-[#004669]">
+                  {COMPANY_INFO.phone}
                 </a>
-              ))}
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail className="h-4 w-4 shrink-0 text-[#076290]" />
+                <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-[#004669]">
+                  {COMPANY_INFO.email}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Clock className="h-4 w-4 shrink-0 text-[#076290]" />
+                <span>Business Hours: {COMPANY_INFO.hours}</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 4: Trust & Practical Involvement */}
+          <div className="space-y-3">
+            <h4 className="font-heading text-sm font-bold uppercase tracking-wider text-[#435363]">
+              Practical Industry Backing
+            </h4>
+            <div className="flex items-start gap-2 text-xs">
+              <Factory className="h-4 w-4 text-[#e8b328] shrink-0 mt-0.5" />
+              <span>
+                We operate our own active notebook manufacturing unit and printing press — ensuring every recommendation is grounded in real production experience.
+              </span>
+            </div>
+            <div className="pt-1">
+              <a
+                href={COMPANY_INFO.facebook}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded bg-[#1877F2] px-3 py-1.5 text-xs font-bold text-white hover:brightness-105 transition"
+              >
+                <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+                Facebook: /machineryhubbhw
+              </a>
             </div>
           </div>
-          <p className="flex gap-2">
-            <Mail className="h-4 w-4 shrink-0 text-primary" />
-            <a
-              href={`mailto:${COMPANY_INFO.email}`}
-              className="transition-colors hover:text-primary"
-            >
-              {COMPANY_INFO.email}
-            </a>
-          </p>
-          <p className="flex gap-2">
-            <Clock className="h-4 w-4 shrink-0 text-primary" />
-            {COMPANY_INFO.hours}
-          </p>
         </div>
       </div>
 
-      {/* Bottom Copyright */}
-      <div className="border-t border-steel-foreground/10">
-        <div className="container-x flex flex-col justify-between items-center gap-3 py-5 text-xs sm:flex-row">
-          <span>© {new Date().getFullYear()} Machinery Hub · Siddharthanagar-6, Bhairahawa, Nepal. All rights reserved.</span>
-          <div className="flex items-center gap-4">
-            <Link to="/privacy" className="hover:text-primary transition-colors">
-              Privacy Policy
+      {/* Sub-Footer identical to City Graphics #sub-footer */}
+      <div id="sub-footer" className="p-4 px-6 bg-white">
+        <div className="flex flex-col md:flex-row items-center justify-between text-xs text-[#8997a5] gap-3">
+          <p className="m-0 text-center md:text-left">
+            Copyrights © {new Date().getFullYear()} <strong className="text-[#435363]">Machinery Hub</strong>. All Rights Reserved.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 font-roboto text-[12px]">
+            <Link to="/" className="text-[#8997a5] hover:text-[#004669] transition">
+              Home
             </Link>
-            <span className="opacity-40">•</span>
-            <Link to="/terms" className="hover:text-primary transition-colors">
-              Terms & Conditions
+            <span>|</span>
+            <Link to="/about" className="text-[#8997a5] hover:text-[#004669] transition">
+              About Us
+            </Link>
+            <span>|</span>
+            <Link to="/stock-list" className="text-[#8997a5] hover:text-[#004669] transition">
+              Stock List
+            </Link>
+            <span>|</span>
+            <Link to="/services" className="text-[#8997a5] hover:text-[#004669] transition">
+              Services
+            </Link>
+            <span>|</span>
+            <Link to="/contactus" className="text-[#8997a5] hover:text-[#004669] transition">
+              Contact Us
             </Link>
           </div>
         </div>

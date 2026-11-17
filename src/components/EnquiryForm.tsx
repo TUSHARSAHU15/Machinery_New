@@ -1,275 +1,220 @@
 import React, { useState } from 'react';
-import { Copy, Send } from 'lucide-react';
 import { toast } from 'sonner';
-import { WhatsAppIcon } from './WhatsAppIcon';
-import { CATEGORIES, getWhatsAppUrl } from '../data/machinery';
+import { getWhatsAppUrl, COMPANY_INFO } from '../data/machinery';
+import { MessageSquare, Copy } from 'lucide-react';
 
-interface EnquiryFormProps {
-  defaultCategory?: string;
-  machineName?: string;
-}
+export const EnquiryForm: React.FC<{ defaultMachine?: string }> = ({
+  defaultMachine = '',
+}) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    company: '',
+    city: '',
+    category: '1. Offset Printing Machinery',
+    machineRequirement: defaultMachine,
+    condition: 'Any / Recommended',
+    notes: '',
+  });
 
-const inputClass =
-  'w-full rounded-md border border-input bg-card px-3.5 py-2.5 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/30 text-foreground';
-const labelClass = 'mb-1.5 block text-sm font-semibold text-foreground';
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-interface RadioPillsProps {
-  name: string;
-  options: string[];
-  value: string;
-  onChange: (val: string) => void;
-}
-
-const RadioPills: React.FC<RadioPillsProps> = ({ name, options, value, onChange }) => {
-  return (
-    <div className="flex flex-wrap gap-2">
-      {options.map((opt) => (
-        <label
-          key={opt}
-          className={`cursor-pointer rounded-md border px-4 py-2 text-sm font-semibold transition ${
-            value === opt
-              ? 'border-primary bg-accent text-accent-foreground'
-              : 'border-input bg-card hover:border-primary/50 text-foreground'
-          }`}
-        >
-          <input
-            type="radio"
-            name={name}
-            value={opt}
-            checked={value === opt}
-            onChange={() => onChange(opt)}
-            className="sr-only"
-          />
-          {opt}
-        </label>
-      ))}
-    </div>
-  );
-};
-
-export const EnquiryForm: React.FC<EnquiryFormProps> = ({ defaultCategory, machineName }) => {
-  const [condition, setCondition] = useState('Either');
-  const [install, setInstall] = useState('Yes');
-
-  const defaultCategoryName =
-    CATEGORIES.find((c) => c.slug === defaultCategory)?.name ?? CATEGORIES[0]?.name;
-
-  const buildMessage = (form: HTMLFormElement) => {
-    const data = new FormData(form);
+  const buildMessage = () => {
     return [
-      '🙏 *नमस्ते! Machinery Hub मा तपाईंलाई हार्दिक स्वागत छ।*',
-      'हामीबाट तपाईंले प्राप्त गर्न सक्नुहुन्छ:',
-      '✅ Note Book Industry Machines',
-      '✅ Offset Press Machines',
-      '✅ Paper Related All Machines',
-      '✅ Installation & Technical Support',
-      '',
-      '*कृपया आफ्नो आवश्यकताको विवरण:*',
-      machineName ? `* मेसिनको नाम: ${machineName}` : `* क्याटेगोरी: ${data.get('category')}`,
-      `* आवश्यक क्षमता (Capacity): ${data.get('capacity') || '-'}`,
-      `* अवस्था (Condition): ${condition}`,
-      `* अनुमानित बजेट (Budget): ${data.get('budget') || '-'}`,
-      `* स्थान (City/District): ${data.get('city')}`,
-      `* जडान (Installation Required): ${install}`,
-      `* ग्राहकको नाम (Name): ${data.get('name')}`,
-      `* कम्पनीको नाम (Company): ${data.get('company') || '-'}`,
-      `* फोन / WhatsApp: ${data.get('phone')}`,
-      `* इमेल (Email): ${data.get('email') || '-'}`,
-      `* अन्य आवश्यक जानकारी (Notes): ${data.get('notes') || '-'}`,
-      '',
-      'Machinery Hub',
-      '📞 +977 9857024409, 9824421727',
+      '🙏 *नमस्ते! Machinery Hub Requirement Submission*',
+      '----------------------------------------',
+      `* ग्राहकको नाम (Customer Name):* ${formData.name}`,
+      `* फोन / WhatsApp Number:* ${formData.phone}`,
+      formData.email ? `* इमेल (Email):* ${formData.email}` : '',
+      formData.company ? `* कम्पनी (Company/Press):* ${formData.company}` : '',
+      `* स्थान (City/District):* ${formData.city}`,
+      `* क्याटेगोरी (Category):* ${formData.category}`,
+      formData.machineRequirement ? `* आवश्यक मेसिन (Machine):* ${formData.machineRequirement}` : '',
+      `* अवस्था (Condition):* ${formData.condition}`,
+      formData.notes ? `* थप विवरण (Notes):* ${formData.notes}` : '',
+      '----------------------------------------',
+      'Machinery Hub · Bhairahawa, Nepal',
+      '👤 Mr. Anand Karna, Director',
+      '📞 +977-9857024409, 9824421727',
       '📧 karnfile@gmail.com',
-      '📍 Siddharthanagar-6, Rupandehi, Bhairahawa, Nepal',
-      'अधिक जानकारी को लागी हाम्रो Facebook page:',
-      'https://www.facebook.com/machineryhubbhw/',
-      '',
-      '"Your Trusted Partner for Industrial Machinery."',
+      '📍 Siddharthanagar-6, Rupandehi, Bhairahawa',
     ]
       .filter(Boolean)
       .join('\n');
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const msg = buildMessage(e.currentTarget);
+    if (!formData.name || !formData.phone || !formData.city) {
+      toast.error('Please enter your name, phone number, and city.');
+      return;
+    }
+    const msg = buildMessage();
     window.open(getWhatsAppUrl(msg), '_blank');
     toast.success('Opening WhatsApp with your enquiry details');
   };
 
-  const handleCopy = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    const form = e.currentTarget.form;
-    if (form && form.reportValidity()) {
-      const msg = buildMessage(form);
-      await navigator.clipboard.writeText(msg);
-      toast.success('Enquiry details copied');
+  const handleCopy = () => {
+    if (!formData.name || !formData.phone) {
+      toast.error('Please fill in your name and phone number first.');
+      return;
     }
+    const msg = buildMessage();
+    navigator.clipboard.writeText(msg);
+    toast.success('Enquiry text copied to clipboard!');
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-xl border border-border bg-card p-6 shadow-card md:p-8"
+      className="border border-[#e1e8ed] rounded-lg p-6 bg-white shadow-sm space-y-4 text-xs"
     >
-      <h3 className="text-2xl font-extrabold text-foreground">Machinery Requirement Form</h3>
-      <p className="mt-1 text-sm text-muted-foreground">
-        Tell us what machinery you need. Our team will contact you.
+      <h3 className="font-heading text-lg font-bold text-[#435363] border-b border-[#eef2f5] pb-2">
+        Machinery Requirement & Enquiry Form
+      </h3>
+      <p className="text-[#8997a5] text-[12px] leading-relaxed">
+        Submit your specifications below. Director Mr. Anand Karna and our engineering team will respond promptly.
       </p>
 
-      <div className="mt-6 grid gap-5 md:grid-cols-2">
-        {/* Customer Name */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Name */}
         <div>
-          <label className={labelClass}>Customer Name *</label>
+          <label className="block font-bold text-[#435363] mb-1">
+            Your Name / Contact Person *
+          </label>
           <input
+            type="text"
             required
             name="name"
-            maxLength={100}
-            className={inputClass}
-            placeholder="Your full name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="e.g. Ramesh Shrestha"
+            className="w-full h-9 border border-[#e1e8ed] px-3 rounded text-xs focus:outline-none focus:border-[#004669]"
           />
         </div>
 
-        {/* Company / Business Name */}
+        {/* Phone */}
         <div>
-          <label className={labelClass}>Company / Business Name</label>
+          <label className="block font-bold text-[#435363] mb-1">
+            Mobile / WhatsApp Number *
+          </label>
           <input
-            name="company"
-            maxLength={120}
-            className={inputClass}
-            placeholder="Business name"
-          />
-        </div>
-
-        {/* Phone / WhatsApp */}
-        <div>
-          <label className={labelClass}>Phone / WhatsApp *</label>
-          <input
+            type="tel"
             required
             name="phone"
-            type="tel"
-            maxLength={20}
-            pattern="[0-9+\- ]{7,20}"
-            className={inputClass}
-            placeholder="+977 98XXXXXXXX"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="e.g. +977 98XXXXXXXX"
+            className="w-full h-9 border border-[#e1e8ed] px-3 rounded text-xs focus:outline-none focus:border-[#004669]"
           />
         </div>
 
-        {/* Email Address */}
+        {/* Email */}
         <div>
-          <label className={labelClass}>Email Address</label>
+          <label className="block font-bold text-[#435363] mb-1">
+            Email Address
+          </label>
           <input
-            name="email"
             type="email"
-            maxLength={255}
-            className={inputClass}
-            placeholder="you@company.com"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="e.g. name@example.com"
+            className="w-full h-9 border border-[#e1e8ed] px-3 rounded text-xs focus:outline-none focus:border-[#004669]"
           />
         </div>
 
-        {/* Machine Category */}
+        {/* Company */}
         <div>
-          <label className={labelClass}>Machine Category *</label>
-          <select required name="category" defaultValue={defaultCategoryName} className={inputClass}>
-            {CATEGORIES.map((c) => (
-              <option key={c.slug} value={c.name}>
-                {c.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Required Capacity */}
-        <div>
-          <label className={labelClass}>Required Capacity</label>
+          <label className="block font-bold text-[#435363] mb-1">
+            Company / Press Name
+          </label>
           <input
-            name="capacity"
-            maxLength={100}
-            className={inputClass}
-            placeholder="e.g. 5,000 notebooks / hour"
-          />
-        </div>
-
-        {/* Machine Condition */}
-        <div className="md:col-span-2">
-          <label className={labelClass}>Machine Condition</label>
-          <RadioPills
-            name="condition"
-            options={['New', 'Used', 'Either']}
-            value={condition}
-            onChange={setCondition}
-          />
-        </div>
-
-        {/* Estimated Budget */}
-        <div>
-          <label className={labelClass}>Estimated Budget</label>
-          <input
-            name="budget"
-            maxLength={60}
-            className={inputClass}
-            placeholder="e.g. NPR 25 Lakh"
+            type="text"
+            name="company"
+            value={formData.company}
+            onChange={handleChange}
+            placeholder="e.g. ABC Printers / Himalayan Notebooks"
+            className="w-full h-9 border border-[#e1e8ed] px-3 rounded text-xs focus:outline-none focus:border-[#004669]"
           />
         </div>
 
         {/* City / District */}
         <div>
-          <label className={labelClass}>City / District *</label>
+          <label className="block font-bold text-[#435363] mb-1">
+            City / District *
+          </label>
           <input
+            type="text"
             required
             name="city"
-            maxLength={80}
-            className={inputClass}
-            placeholder="e.g. Kathmandu / Butwal"
+            value={formData.city}
+            onChange={handleChange}
+            placeholder="e.g. Bhairahawa / Butwal / Kathmandu"
+            className="w-full h-9 border border-[#e1e8ed] px-3 rounded text-xs focus:outline-none focus:border-[#004669]"
           />
         </div>
 
-        {/* Installation Required */}
-        <div className="md:col-span-2">
-          <label className={labelClass}>Installation Required?</label>
-          <RadioPills
-            name="install"
-            options={['Yes', 'No', 'Not sure']}
-            value={install}
-            onChange={setInstall}
-          />
-        </div>
-
-        {/* Additional Requirements */}
-        <div className="md:col-span-2">
-          <label className={labelClass}>Additional Requirements</label>
-          <textarea
-            name="notes"
-            rows={4}
-            maxLength={1000}
-            className={inputClass}
-            placeholder="Paper type, output size, space available, timeline…"
-          />
+        {/* Category (Exact 9 Categories) */}
+        <div>
+          <label className="block font-bold text-[#435363] mb-1">
+            Machinery Category
+          </label>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            className="w-full h-9 border border-[#e1e8ed] px-2 rounded text-xs focus:outline-none focus:border-[#004669] bg-white text-[#435363]"
+          >
+            <option value="1. Offset Printing Machinery">1. Offset Printing Machinery</option>
+            <option value="2. Paper Cutting & Processing Machinery">2. Paper Cutting & Processing Machinery</option>
+            <option value="3. Paper Folding & Ruling Machinery">3. Paper Folding & Ruling Machinery</option>
+            <option value="4. Die Cutting & Creasing Machinery">4. Die Cutting & Creasing Machinery</option>
+            <option value="5. Notebook & Exercise Book Manufacturing Machinery">5. Notebook & Exercise Book Manufacturing Machinery</option>
+            <option value="6. Book Binding & Finishing Machinery">6. Book Binding & Finishing Machinery</option>
+            <option value="7. Paper & Packaging Machinery">7. Paper & Packaging Machinery</option>
+            <option value="8. Non-Woven & Fiber Bag Manufacturing Machinery">8. Non-Woven & Fiber Bag Manufacturing Machinery</option>
+            <option value="9. Other Printing & Allied Machinery">9. Other Printing & Allied Machinery</option>
+          </select>
         </div>
       </div>
 
-      {/* Action Buttons */}
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+      {/* Machine Details / Notes */}
+      <div>
+        <label className="block font-bold text-[#435363] mb-1">
+          Specific Machine Model or Requirements
+        </label>
+        <textarea
+          rows={3}
+          name="notes"
+          value={formData.notes}
+          onChange={handleChange}
+          placeholder="Describe your requirement (e.g. Stallion 3-in-1 notebook machine, Edge squaring machine, Gluing machine, Reel-to-sheet cutter, Polar guillotine, or Glue binder)..."
+          className="w-full border border-[#e1e8ed] p-2.5 rounded text-xs focus:outline-none focus:border-[#004669]"
+        />
+      </div>
+
+      {/* Buttons */}
+      <div className="pt-2 flex flex-col sm:flex-row gap-3">
         <button
           type="submit"
-          className="inline-flex flex-1 items-center justify-center gap-2 rounded-md bg-whatsapp px-5 py-3 font-bold text-steel-foreground transition hover:brightness-105"
+          className="flex-1 h-10 bg-[#e8b328] hover:bg-[#d49f14] text-[#003854] font-roboto text-xs font-bold uppercase tracking-wider rounded transition flex items-center justify-center gap-2 shadow"
         >
-          <WhatsAppIcon className="h-5 w-5" />
-          Send Enquiry on WhatsApp
+          <MessageSquare className="h-4 w-4" /> Send Requirement via WhatsApp
         </button>
         <button
           type="button"
           onClick={handleCopy}
-          className="inline-flex items-center justify-center gap-2 rounded-md border border-input px-5 py-3 font-bold transition hover:bg-secondary text-foreground"
+          className="px-4 h-10 border border-[#e1e8ed] hover:bg-[#F5FAFE] text-[#435363] font-roboto text-xs font-bold uppercase tracking-wider rounded transition flex items-center justify-center gap-1.5"
         >
-          <Copy className="h-4 w-4" />
-          Copy Details
+          <Copy className="h-3.5 w-3.5" /> Copy Details
         </button>
       </div>
-
-      <p className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
-        <Send className="h-3 w-3" />
-        We usually respond within 2 business hours.
-      </p>
     </form>
   );
 };

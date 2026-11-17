@@ -1,17 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { HomePage } from './pages/HomePage';
-import { MachinesPage } from './pages/MachinesPage';
+import { StockListPage } from './pages/StockListPage';
 import { MachineDetailPage } from './pages/MachineDetailPage';
 import { ServicesPage } from './pages/ServicesPage';
-import { GalleryPage } from './pages/GalleryPage';
 import { AboutPage } from './pages/AboutPage';
-import { FaqPage } from './pages/FaqPage';
 import { ContactPage } from './pages/ContactPage';
-import { QuotePage } from './pages/QuotePage';
-import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
-import { TermsPage } from './pages/TermsPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 export const App: React.FC = () => {
@@ -20,16 +15,16 @@ export const App: React.FC = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/machines" element={<MachinesPage />} />
+          <Route path="/index" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/stock-list" element={<StockListPage />} />
+          <Route path="/stock_list2" element={<StockListPage />} />
+          <Route path="/machines" element={<StockListPage />} />
           <Route path="/machines/:slug" element={<MachineDetailPage />} />
           <Route path="/services" element={<ServicesPage />} />
-          <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/faq" element={<FaqPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/quote" element={<QuotePage />} />
-          <Route path="/privacy" element={<PrivacyPolicyPage />} />
-          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/contactus" element={<ContactPage />} />
+          <Route path="/quote" element={<Navigate to="/contactus" replace />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>

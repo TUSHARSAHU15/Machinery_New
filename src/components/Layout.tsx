@@ -13,10 +13,12 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   }, [pathname, search]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground">
-      <Header />
-      <main className="flex-1">{children}</main>
-      <Footer />
+    <div className="min-h-screen py-0 md:py-6 px-0 md:px-3 flex justify-center selection:bg-[#004669] selection:text-white">
+      <div className="boxed-container flex flex-col min-h-[92vh] bg-white">
+        <Header />
+        <main className="flex-1 w-full bg-white">{children}</main>
+        <Footer />
+      </div>
       <WhatsAppFab />
       <Toaster position="bottom-right" richColors />
     </div>

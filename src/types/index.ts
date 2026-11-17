@@ -3,6 +3,7 @@ export interface MachineCategory {
   name: string;
   short: string;
   image: string;
+  subcategories?: string[];
 }
 
 export interface Machine {
