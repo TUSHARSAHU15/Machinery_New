@@ -10,10 +10,20 @@ export const Footer: React.FC = () => {
       <div className="p-6 md:p-8 border-b border-[#f1f5f9] bg-[#F5FAFE]/60">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-xs leading-relaxed">
           {/* Col 1: About Brief */}
-          <div className="space-y-2">
-            <h4 className="font-heading text-sm font-bold uppercase tracking-wider text-[#435363]">
-              Machinery Hub
-            </h4>
+          <div className="space-y-3">
+            <div className="flex items-center gap-3">
+              <img
+                src="/assets/logo.png"
+                alt="Machinery Hub Logo"
+                className="h-12 w-auto object-contain drop-shadow-sm"
+              />
+              <div>
+                <h4 className="font-heading text-sm font-bold uppercase tracking-wider text-[#435363] leading-none">
+                  Machinery Hub
+                </h4>
+                <p className="text-[10px] text-[#004669] font-bold mt-1">Bhairahawa, Nepal</p>
+              </div>
+            </div>
             <p className="text-[#8997a5]">
               Nepal’s leading importer & supplier of notebook manufacturing machinery, pre-owned offset printing machinery, and comprehensive bindery solutions.
             </p>
