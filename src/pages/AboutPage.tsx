@@ -175,9 +175,26 @@ export const AboutPage: React.FC = () => {
             <div className="flex items-center gap-2">
               <UserCheck className="h-5 w-5 text-[#004669]" />
               <h3 className="font-heading font-bold text-lg text-[#435363]">
-                Leadership
+                Leadership & Vision
               </h3>
             </div>
+
+            <div className="relative h-64 sm:h-72 md:h-80 w-full rounded overflow-hidden bg-[#002b40] my-2 border border-[#004669]/20 shadow-xs">
+              <img
+                src={IMAGES.directorPortrait}
+                alt="Mr. Anand Karna - Director, Machinery Hub Nepal"
+                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-3.5 right-3.5 text-white">
+                <span className="inline-block px-2 py-0.5 bg-[#e8b328] text-[#003854] text-[9px] font-roboto font-bold uppercase rounded mb-0.5">
+                  Director & Industry Veteran
+                </span>
+                <p className="font-heading font-bold text-sm text-white leading-tight">Mr. Anand Karna</p>
+                <p className="text-[10px] text-gray-200">20+ Years Hands-On Printing & Machinery Expertise</p>
+              </div>
+            </div>
+
             <p className="text-[13px] text-[#435363] font-bold">
               Mr. Anand Karna, Director
             </p>

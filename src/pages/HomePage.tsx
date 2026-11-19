@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ChevronRight,
@@ -42,6 +42,12 @@ export const HomePage: React.FC = () => {
       subtitle: 'Available to Import on Order: 28×40 (1-8 Colours), 20×29 (1-8 Colours), 19×26 (1-4 Colours) & Small Sizes (Autoprint & Sahil)',
     },
     {
+      img: IMAGES.komoriHero,
+      badge: 'KOMORI LITHRONE · DIRECT IMPORT FROM JAPAN',
+      title: 'Komori Multi-Colour High-Speed Offset Presses',
+      subtitle: 'Available to Import on Order: Lithrone G37, 28/29 & 40 (4, 5, 6 & 8 Colours) with PQC-S Automation & Pre-Shipment Inspection',
+    },
+    {
       img: IMAGES.notebook,
       badge: 'Notebook Manufacturing',
       title: 'Stallion 3-in-1 Notebook Machines with German Heads',
@@ -61,6 +67,14 @@ export const HomePage: React.FC = () => {
     },
   ];
 
+  // Automatically advance slides every 4.5 seconds smoothly
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail) return;
@@ -72,16 +86,22 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="w-full">
-      {/* 1. Hero Banner Slider (1170px width, Revolution Slider style) */}
+      {/* 1. Hero Banner Slider (Smooth Dissolve Cross-Fade) */}
       <div className="relative w-full h-[320px] sm:h-[420px] md:h-[470px] overflow-hidden bg-[#002b40]">
-        <img
-          src={slides[currentSlide].img}
-          alt={slides[currentSlide].title}
-          className="w-full h-full object-cover transition-opacity duration-700 brightness-[0.88]"
-        />
+        {/* Layered Slides with 1000ms butter-smooth cross-fade transition */}
+        {slides.map((slide, idx) => (
+          <img
+            key={idx}
+            src={slide.img}
+            alt={slide.title}
+            className={`absolute inset-0 w-full h-full object-cover brightness-[0.92] transition-opacity duration-1000 ease-in-out ${
+              currentSlide === idx ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
+          />
+        ))}
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20 pointer-events-none" />
 
         {/* Banner Content */}
         <div className="absolute inset-x-0 bottom-0 p-6 md:p-10 text-white max-w-4xl">
@@ -169,25 +189,85 @@ export const HomePage: React.FC = () => {
                 </p>
               </div>
 
-              {/* Featured Offset Machine Front Showcase */}
-              <div className="mt-5 rounded-lg overflow-hidden border border-[#e1e8ed] bg-white shadow-xs">
-                <div className="relative h-64 sm:h-72 md:h-80 w-full overflow-hidden bg-[#002b40]">
-                  <img
-                    src={IMAGES.heidelbergFront}
-                    alt="Heidelberg Speedmaster Multi-Colour Offset Printing Press imported by Machinery Hub"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <div className="absolute bottom-3 left-4 right-4 text-white">
-                    <span className="inline-block px-2.5 py-0.5 bg-[#e8b328] text-[#003854] text-[10px] font-roboto font-bold uppercase tracking-wider rounded mb-1">
-                      Direct Import Specialty · Multi-Colour Offset Presses
-                    </span>
-                    <h3 className="font-heading font-bold text-sm sm:text-base text-white leading-tight">
-                      Heidelberg Speedmaster & Komori Lithrone Presses
-                    </h3>
-                    <p className="text-[11px] text-gray-200 mt-0.5">
-                      Available to Import: 28"×40" (1-8 Col), 20"×29" (1-8 Col), 19"×26" (1-4 Col) & Small Sizes
-                    </p>
+              {/* Director Spotlight & Heidelberg Speedmaster Plant Showcase */}
+              <div className="mt-5 rounded-lg overflow-hidden border border-[#004669]/20 bg-gradient-to-br from-[#002b40] to-[#004669] text-white shadow-md">
+                <div className="grid grid-cols-1 md:grid-cols-12 items-stretch">
+                  {/* Photo Column */}
+                  <div className="md:col-span-5 relative min-h-[360px] sm:min-h-[400px] overflow-hidden bg-black/40">
+                    <img
+                      src={IMAGES.directorHeidelberg}
+                      alt="Mr. Anand Karna, Director of Machinery Hub with Heidelberg Speedmaster Multi-Colour Press"
+                      className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent md:hidden" />
+                    <div className="absolute bottom-3 left-3 right-3 md:hidden">
+                      <span className="px-2 py-0.5 bg-[#e8b328] text-[#003854] text-[10px] font-roboto font-bold uppercase rounded">
+                        On-Site Production Plant
+                      </span>
+                      <p className="font-heading font-bold text-sm text-white mt-1">
+                        Mr. Anand Karna with Heidelberg Speedmaster
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Content Column */}
+                  <div className="md:col-span-7 p-6 sm:p-7 flex flex-col justify-between space-y-3.5">
+                    <div className="space-y-2.5">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="px-2.5 py-1 bg-[#e8b328] text-[#003854] text-[10px] font-roboto font-bold uppercase tracking-wider rounded">
+                          Director & Practical Expertise
+                        </span>
+                        <span className="text-[11px] text-gray-300 font-semibold">
+                          20+ Years Hands-On Experience
+                        </span>
+                      </div>
+
+                      <h3 className="font-heading text-lg sm:text-xl font-extrabold text-white leading-tight">
+                        Led by Director Mr. Anand Karna
+                      </h3>
+
+                      <p className="text-xs sm:text-[13px] text-gray-200 leading-relaxed">
+                        With over two decades of practical ground expertise in printing, bookbinding, and notebook manufacturing, Mr. Anand Karna personally inspects, verifies, and imports offset printing presses (Heidelberg Speedmaster & Komori Lithrone) and automatic notebook machines directly for printers and manufacturers across Nepal.
+                      </p>
+
+                      <div className="grid grid-cols-2 gap-2.5 pt-1 text-xs">
+                        <div className="p-2.5 rounded bg-white/10 backdrop-blur-xs border border-white/15">
+                          <p className="text-[10px] text-[#e8b328] font-bold uppercase tracking-wider">
+                            Active Plant Operator
+                          </p>
+                          <p className="text-[11px] font-medium text-white mt-0.5">
+                            Operates own printing press & notebook factory in Nepal
+                          </p>
+                        </div>
+                        <div className="p-2.5 rounded bg-white/10 backdrop-blur-xs border border-white/15">
+                          <p className="text-[10px] text-[#e8b328] font-bold uppercase tracking-wider">
+                            Pre-Inspected Quality
+                          </p>
+                          <p className="text-[11px] font-medium text-white mt-0.5">
+                            Certified cylinders, gears & electronics before dispatch
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 flex flex-wrap gap-2.5">
+                      <a
+                        href={getWhatsAppUrl(
+                          'Namaste Mr. Anand Karna ji, I saw your photo with the Heidelberg Speedmaster and want to discuss machinery requirements.'
+                        )}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#25D366] hover:brightness-105 text-white text-xs font-bold uppercase tracking-wider rounded font-roboto transition shadow"
+                      >
+                        <MessageSquare className="h-3.5 w-3.5" /> Chat Directly with Director
+                      </a>
+                      <Link
+                        to="/about"
+                        className="inline-flex items-center gap-1 px-3.5 py-2 bg-white/15 hover:bg-white/25 text-white text-xs font-bold uppercase tracking-wider rounded font-roboto transition border border-white/20"
+                      >
+                        Company Profile »
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -268,145 +348,6 @@ export const HomePage: React.FC = () => {
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            {/* Brand We Sell Section */}
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <h2 className="cg-title !mb-0">Brands We Deal In & Authorized Dealerships</h2>
-                <span className="text-xs text-[#8997a5]">International & Indian Leaders</span>
-              </div>
-              <p className="text-xs text-[#8997a5] mb-4">
-                We trade, import, and officially distribute machinery from the world’s most respected printing and notebook machinery manufacturers:
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {BRANDS.map((brand) => (
-                  <div key={brand.name} className="cg-brand-card flex-col text-center">
-                    <span className="font-roboto text-sm font-extrabold tracking-wider text-[#004669]">
-                      {brand.name}
-                    </span>
-                    <span className="text-[10px] text-[#8997a5] font-semibold mt-0.5">
-                      {brand.origin}
-                    </span>
-                    <span className="text-[9px] text-[#076290] font-medium mt-0.5">
-                      {brand.category}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Featured Machinery We Import Strip */}
-            <div>
-              <div className="flex items-center justify-between mb-4 border-b border-[#eef2f5] pb-2">
-                <h2 className="cg-title !mb-0">Featured Machinery We Import</h2>
-                <Link to="/we-import" className="cg-read-more">
-                  View All Machinery We Import »
-                </Link>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {MACHINES.slice(0, 8).map((machine) => (
-                  <div
-                    key={machine.slug}
-                    className="border border-[#e1e8ed] rounded-lg overflow-hidden bg-white hover:border-[#004669] hover:shadow-md transition shadow-xs group flex flex-col justify-between"
-                  >
-                    <div>
-                      {/* HD Machine Image Canvas with Proper Fit */}
-                      <div className="relative h-56 bg-white overflow-hidden flex items-center justify-center p-3 border-b border-[#f1f5f9]">
-                        <img
-                          src={machine.images[0]}
-                          alt={machine.name}
-                          className="max-h-full max-w-full object-contain filter drop-shadow-sm group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <span className="absolute top-2.5 left-2.5 bg-[#004669] text-white text-[10px] font-roboto font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
-                          {machine.condition}
-                        </span>
-                        <span className="absolute bottom-2.5 left-2.5 bg-[#25D366] text-white text-[9px] font-roboto font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
-                          Available to Import
-                        </span>
-                        <span className="absolute top-2.5 right-2.5 bg-[#F5FAFE] text-[#004669] border border-[#e1e8ed] text-[10px] font-roboto font-bold px-2 py-0.5 rounded shadow-xs">
-                          {machine.model}
-                        </span>
-                      </div>
-
-                      <div className="p-4 space-y-2.5">
-                        <h3 className="font-heading font-bold text-sm text-[#435363] line-clamp-1 group-hover:text-[#004669] transition">
-                          {machine.name}
-                        </h3>
-                        <p className="text-[12px] text-[#8997a5] line-clamp-2 leading-relaxed">
-                          {machine.description}
-                        </p>
-
-                        {/* Prominent Sizes & Specifications Box */}
-                        {machine.specs && machine.specs.length > 0 && (
-                          <div className="mt-2.5 p-2.5 bg-[#F5FAFE] rounded border border-[#e1e8ed] text-[11px] space-y-1">
-                            <div className="font-bold text-[#004669] flex items-start gap-1">
-                              <span className="text-[#076290] font-extrabold shrink-0">►</span>
-                              <span>
-                                {machine.specs[0][0]}:{' '}
-                                <span className="text-[#d9222a] font-extrabold">
-                                  {machine.specs[0][1]}
-                                </span>
-                              </span>
-                            </div>
-                            {machine.specs[1] && (
-                              <div className="text-[10px] text-[#8997a5] pl-3.5">
-                                <span className="font-semibold text-[#435363]">{machine.specs[1][0]}:</span>{' '}
-                                {machine.specs[1][1]}
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="p-4 pt-0">
-                      <div className="pt-2.5 border-t border-[#f1f5f9] flex items-center justify-between">
-                        <span className="text-xs font-bold text-[#004669]">
-                          {formatPrice(machine.price)}
-                        </span>
-                        <Link
-                          to={`/machines/${machine.slug}`}
-                          className="text-[11px] font-bold text-[#336699] hover:underline uppercase tracking-wider flex items-center gap-1"
-                        >
-                          Specs & Details »
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Our Services Quick Grid */}
-            <div className="pt-2">
-              <h2 className="cg-title">Our Services & Technical Support</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {SERVICES.slice(0, 6).map((service, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3.5 rounded border border-[#f1f5f9] bg-[#F5FAFE] flex gap-3 items-start"
-                  >
-                    <div className="h-7 w-7 rounded bg-[#004669] text-[#e8b328] flex items-center justify-center shrink-0 mt-0.5">
-                      <CheckCircle2 className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <h4 className="font-heading text-xs font-bold text-[#435363]">
-                        {service.title}
-                      </h4>
-                      <p className="text-[11px] text-[#8997a5] mt-1 leading-normal line-clamp-2">
-                        {service.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-3 text-right">
-                <Link to="/services" className="cg-read-more">
-                  View All Services »
-                </Link>
               </div>
             </div>
 
@@ -552,6 +493,192 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* 3. FULL-WIDTH SECTION: Our Services & Technical Support */}
+      <section className="p-6 md:p-8 pt-0 bg-white">
+        <div className="border-t border-[#eef2f5] pt-6">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2 border-b border-[#eef2f5] pb-3">
+            <div>
+              <h2 className="cg-title !mb-0">Our Services & Technical Support</h2>
+              <p className="text-xs text-[#8997a5] mt-1">
+                Comprehensive machinery lifecycle support, genuine spare parts, and production-tested operational training
+              </p>
+            </div>
+            <Link to="/services" className="cg-read-more shrink-0">
+              View All Services »
+            </Link>
+          </div>
+
+          {/* Full Width 3-Column Grid Spanning from Left Border to Right Border */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
+            {SERVICES.map((service, idx) => (
+              <div
+                key={idx}
+                className="p-5 rounded-lg border border-[#e1e8ed] bg-[#F5FAFE] hover:bg-white hover:border-[#004669] hover:shadow-md transition flex gap-3.5 items-start group"
+              >
+                <div className="h-8 w-8 rounded bg-[#004669] text-[#e8b328] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                  <CheckCircle2 className="h-4 w-4" />
+                </div>
+                <div>
+                  <h4 className="font-heading text-sm font-bold text-[#435363] group-hover:text-[#004669] transition">
+                    {service.title}
+                  </h4>
+                  <p className="text-[12px] text-[#8997a5] mt-1.5 leading-relaxed">
+                    {service.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#004669] hover:bg-[#003854] text-white text-xs font-bold uppercase tracking-wider font-roboto rounded transition shadow-sm"
+            >
+              Explore All Engineering & Technical Support Services <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. FULL-WIDTH SECTION: Brands We Deal In & Authorized Dealerships */}
+      <section className="p-6 md:p-8 pt-0 bg-white">
+        <div className="border-t border-[#eef2f5] pt-6">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2 border-b border-[#eef2f5] pb-3">
+            <div>
+              <h2 className="cg-title !mb-0">Brands We Deal In & Authorized Dealerships</h2>
+              <p className="text-xs text-[#8997a5] mt-1">
+                We trade, import, and officially distribute machinery from the world’s most respected printing and notebook machinery manufacturers:
+              </p>
+            </div>
+            <span className="text-xs font-semibold text-[#8997a5] shrink-0">
+              International & Indian Leaders
+            </span>
+          </div>
+
+          {/* Full Width 4-Column Grid Spanning from Left Border to Right Border */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-5">
+            {BRANDS.map((brand) => (
+              <div
+                key={brand.name}
+                className="cg-brand-card flex-col text-center py-4 px-3"
+              >
+                <span className="font-roboto text-sm sm:text-base font-extrabold tracking-wider text-[#004669]">
+                  {brand.name}
+                </span>
+                <span className="text-[11px] text-[#8997a5] font-semibold mt-1">
+                  {brand.origin}
+                </span>
+                <span className="text-[10px] text-[#076290] font-medium mt-0.5">
+                  {brand.category}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. FULL-WIDTH SECTION: Featured Machinery We Import (Full Width Till White Border) */}
+      <section className="p-6 md:p-8 pt-0 bg-white">
+        <div className="border-t border-[#eef2f5] pt-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 border-b border-[#eef2f5] pb-3">
+            <div>
+              <h2 className="cg-title !mb-0">Featured Machinery We Import</h2>
+              <p className="text-xs text-[#8997a5] mt-1">
+                Pre-inspected offset printing machinery, paper cutting systems & notebook manufacturing lines
+              </p>
+            </div>
+            <Link to="/we-import" className="cg-read-more shrink-0">
+              View All Machinery We Import »
+            </Link>
+          </div>
+
+          {/* Full Width Grid Spanning from Left Border to Right Border (4 Columns) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            {MACHINES.slice(0, 8).map((machine) => (
+              <div
+                key={machine.slug}
+                className="border border-[#e1e8ed] rounded-lg overflow-hidden bg-white hover:border-[#004669] hover:shadow-md transition shadow-xs group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="relative h-52 bg-white overflow-hidden flex items-center justify-center p-3 border-b border-[#f1f5f9]">
+                    <img
+                      src={machine.images[0]}
+                      alt={machine.name}
+                      className="max-h-full max-w-full object-contain filter drop-shadow-sm group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <span className="absolute top-2.5 left-2.5 bg-[#004669] text-white text-[10px] font-roboto font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
+                      {machine.condition}
+                    </span>
+                    <span className="absolute bottom-2.5 left-2.5 bg-[#25D366] text-white text-[9px] font-roboto font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
+                      Available to Import
+                    </span>
+                    <span
+                      className="absolute top-2.5 right-2.5 bg-[#F5FAFE] text-[#004669] border border-[#e1e8ed] text-[10px] font-roboto font-bold px-2 py-0.5 rounded shadow-xs max-w-[140px] truncate"
+                      title={machine.model}
+                    >
+                      {machine.model}
+                    </span>
+                  </div>
+
+                  <div className="p-4 space-y-2.5">
+                    <h3 className="font-heading font-bold text-sm text-[#435363] line-clamp-1 group-hover:text-[#004669] transition">
+                      {machine.name}
+                    </h3>
+                    <p className="text-[12px] text-[#8997a5] line-clamp-2 leading-relaxed">
+                      {machine.description}
+                    </p>
+
+                    {machine.specs && machine.specs.length > 0 && (
+                      <div className="mt-2.5 p-2.5 bg-[#F5FAFE] rounded border border-[#e1e8ed] text-[11px] space-y-1">
+                        <div className="font-bold text-[#004669] flex items-start gap-1">
+                          <span className="text-[#076290] font-extrabold shrink-0">►</span>
+                          <span>
+                            {machine.specs[0][0]}:{' '}
+                            <span className="text-[#d9222a] font-extrabold">
+                              {machine.specs[0][1]}
+                            </span>
+                          </span>
+                        </div>
+                        {machine.specs[1] && (
+                          <div className="text-[10px] text-[#8997a5] pl-3.5 line-clamp-1">
+                            <span className="font-semibold text-[#435363]">{machine.specs[1][0]}:</span>{' '}
+                            {machine.specs[1][1]}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="p-4 pt-0">
+                  <div className="pt-2.5 border-t border-[#f1f5f9] flex items-center justify-between">
+                    <span className="text-xs font-bold text-[#004669]">
+                      {formatPrice(machine.price)}
+                    </span>
+                    <Link
+                      to={`/machines/${machine.slug}`}
+                      className="text-[11px] font-bold text-[#336699] hover:underline uppercase tracking-wider flex items-center gap-1"
+                    >
+                      Specs & Details »
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              to="/we-import"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#004669] hover:bg-[#003854] text-white text-xs font-bold uppercase tracking-wider font-roboto rounded transition shadow-sm"
+            >
+              Explore Full Machinery Import Catalog ({MACHINES.length} Machines) <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
