@@ -1,9 +1,12 @@
 import { Machine, MachineCategory, ServiceItem, FaqItem, CompanyInfo } from '../types';
 
 export const IMAGES = {
-  hero: '/assets/hero-pZ92iVLf.jpg',
+  hero: '/assets/machines/heidelberg-speedmaster-hero.jpg',
+  heidelbergFront: '/assets/machines/heidelberg-speedmaster-front.jpg',
+  heidelbergHero: '/assets/machines/heidelberg-speedmaster-hero.jpg',
+  heidelbergCard: '/assets/machines/heidelberg-speedmaster-card.jpg',
   notebook: '/assets/notebook-DtCPrakx.jpg',
-  offset: '/assets/offset-CSvzMGlv.jpg',
+  offset: '/assets/machines/heidelberg-speedmaster-hero.jpg',
   cutting: '/assets/cutting-BxZQ6G3Y.jpg',
   binding: '/assets/binding-B3zQgJDp.jpg',
   processing: '/assets/processing-B9OWsBlQ.jpg',
@@ -97,7 +100,7 @@ export const CATEGORIES: MachineCategory[] = [
     slug: 'offset',
     name: 'Offset Printing Machinery',
     short: 'Offset Printing',
-    image: IMAGES.offset,
+    image: IMAGES.heidelbergCard,
     subcategories: [
       '28" × 40" Offset Press (Available in 8, 6, 5, 4, 2, 1 Colour)',
       '20" × 29" Offset Press (Available in 8, 6, 5, 4, 2, 1 Colour)',
@@ -410,7 +413,7 @@ export const MACHINES: Machine[] = [
     dimensions: '10.5 m × 3.6 m × 2.2 m',
     description:
       'Full-size heavy-duty commercial and packaging offset printing presses imported directly on order from Germany, Europe, and Japan. Available in 1, 2, 4, 5, 6, and 8 colour units with CPC/PQC computer controls, continuous dampening, perfecting options, and infrared/UV dryers.',
-    images: [IMAGES.offset, IMAGES.hero],
+    images: [IMAGES.heidelbergCard, IMAGES.heidelbergFront, IMAGES.heidelbergHero],
     specs: [
       ['Available Size', '28" × 40" (720 × 1020 mm)'],
       ['Colours Available', '8, 6, 5, 4, 2 & 1 Colour Configurations'],
@@ -433,7 +436,7 @@ export const MACHINES: Machine[] = [
     dimensions: '7.8 m × 3.1 m × 2.0 m',
     description:
       'The most versatile half-size offset printing press, ideal for publishing, textbook printing, high-end commercial jobs, packaging cartons, and calendars. Imported directly on order in configurations ranging from single-colour to 8-colour presses.',
-    images: [IMAGES.offset, IMAGES.hero],
+    images: [IMAGES.heidelbergCard, IMAGES.heidelbergFront, IMAGES.heidelbergHero],
     specs: [
       ['Available Size', '20" × 29" (520 × 740 mm)'],
       ['Colours Available', '8, 6, 5, 4, 2 & 1 Colour Configurations'],
@@ -456,7 +459,7 @@ export const MACHINES: Machine[] = [
     dimensions: '5.8 m × 2.6 m × 1.9 m',
     description:
       'Popular medium-format offset press providing low makeready waste and high running speed. Ideal for printing presses in Nepal printing magazines, books, government forms, brochures, and stationery. Available in 1, 2, and 4 colour options.',
-    images: [IMAGES.offset, IMAGES.hero],
+    images: [IMAGES.heidelbergCard, IMAGES.heidelbergFront, IMAGES.heidelbergHero],
     specs: [
       ['Available Size', '19" × 26" (480 × 660 mm)'],
       ['Colours Available', '4, 2 & 1 Colour Configurations'],
@@ -479,7 +482,7 @@ export const MACHINES: Machine[] = [
     dimensions: '2.8 m × 1.4 m × 1.4 m',
     description:
       'High-speed compact small offset printing machines designed for rapid turnaround printing of bill books, registers, school exam papers, invoice forms, letterheads, envelopes, and pamphlets. Machinery Hub is an Authorized Dealer for Autoprint and Sahil in Nepal.',
-    images: [IMAGES.offset, IMAGES.hero],
+    images: [IMAGES.heidelbergCard, IMAGES.heidelbergHero],
     specs: [
       ['Small Sizes Available', '10" × 12", 12" × 15", 14" × 19" & 15" × 20"'],
       ['Colours & Type', 'Single-Colour & Two-Colour / Compact & Tabletop'],

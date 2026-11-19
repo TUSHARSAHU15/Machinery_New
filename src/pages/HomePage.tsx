@@ -36,10 +36,10 @@ export const HomePage: React.FC = () => {
 
   const slides = [
     {
-      img: IMAGES.offset,
-      badge: 'Pre-Owned Offset Printing',
-      title: 'Quality-Tested Pre-Owned Offset Printing Machinery',
-      subtitle: 'From Small-Format Offset Presses to Advanced 8-Colour Printing Systems (Heidelberg, Komori, Ryobi)',
+      img: IMAGES.heidelbergHero,
+      badge: 'HEIDELBERG SPEEDMASTER · DIRECT IMPORT',
+      title: 'Heidelberg Multi-Colour Offset Printing Machinery',
+      subtitle: 'Available to Import on Order: 28×40 (1-8 Colours), 20×29 (1-8 Colours), 19×26 (1-4 Colours) & Small Sizes (Autoprint & Sahil)',
     },
     {
       img: IMAGES.notebook,
@@ -167,6 +167,29 @@ export const HomePage: React.FC = () => {
                 <p>
                   In the notebook manufacturing sector, we import and supply India’s leading <strong className="text-[#004669]">Stallion 3-in-1 Notebook Making Machines equipped with German heads</strong>, alongside economical and reliable solutions from established brands such as <strong className="text-[#435363]">Chetan</strong> and <strong className="text-[#435363]">Harbhajan</strong>. Additionally, Machinery Hub proudly serves as an <strong className="text-[#004669]">Authorized Dealer in Nepal for Autoprint and Sahil</strong> brands.
                 </p>
+              </div>
+
+              {/* Featured Offset Machine Front Showcase */}
+              <div className="mt-5 rounded-lg overflow-hidden border border-[#e1e8ed] bg-white shadow-xs">
+                <div className="relative h-64 sm:h-72 md:h-80 w-full overflow-hidden bg-[#002b40]">
+                  <img
+                    src={IMAGES.heidelbergFront}
+                    alt="Heidelberg Speedmaster Multi-Colour Offset Printing Press imported by Machinery Hub"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute bottom-3 left-4 right-4 text-white">
+                    <span className="inline-block px-2.5 py-0.5 bg-[#e8b328] text-[#003854] text-[10px] font-roboto font-bold uppercase tracking-wider rounded mb-1">
+                      Direct Import Specialty · Multi-Colour Offset Presses
+                    </span>
+                    <h3 className="font-heading font-bold text-sm sm:text-base text-white leading-tight">
+                      Heidelberg Speedmaster & Komori Lithrone Presses
+                    </h3>
+                    <p className="text-[11px] text-gray-200 mt-0.5">
+                      Available to Import: 28"×40" (1-8 Col), 20"×29" (1-8 Col), 19"×26" (1-4 Col) & Small Sizes
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Unique Strength Highlight Box: Operating Own Facility */}
