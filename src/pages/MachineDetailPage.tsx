@@ -8,7 +8,7 @@ export const MachineDetailPage: React.FC = () => {
   const machine = MACHINES.find((m) => m.slug === slug);
 
   if (!machine) {
-    return <Navigate to="/stock-list" replace />;
+    return <Navigate to="/we-import" replace />;
   }
 
   const [activeImage, setActiveImage] = useState(machine.images[0]);
@@ -19,23 +19,23 @@ export const MachineDetailPage: React.FC = () => {
       <div className="bg-[#003854] text-white py-6 px-6 md:px-10 border-b-4 border-[#e8b328]">
         <div className="max-w-4xl">
           <p className="text-[11px] font-roboto font-bold uppercase tracking-wider text-[#e8b328] mb-1">
-            <Link to="/" className="hover:underline">Home</Link> / <Link to="/stock-list" className="hover:underline">Stock List</Link> / {machine.name}
+            <Link to="/" className="hover:underline">Home</Link> / <Link to="/we-import" className="hover:underline">We Import</Link> / {machine.name}
           </p>
           <h1 className="font-heading text-xl md:text-2xl font-extrabold text-white">
             {machine.name}
           </h1>
           <p className="mt-1 text-xs text-gray-200">
-            Model: {machine.model} · Condition: {machine.condition}
+            Model: {machine.model} · Condition: {machine.condition} · Status: Available to Import on Order
           </p>
         </div>
       </div>
 
       <div className="p-6 md:p-10 space-y-8">
         <Link
-          to="/stock-list"
+          to="/we-import"
           className="inline-flex items-center gap-1.5 text-xs font-roboto font-bold uppercase text-[#004669] hover:text-[#336699]"
         >
-          <ArrowLeft className="h-3.5 w-3.5" /> Back to Stock List
+          <ArrowLeft className="h-3.5 w-3.5" /> Back to Machinery We Import
         </Link>
 
         {/* Top Section: Photos & Quick Details */}
@@ -69,9 +69,14 @@ export const MachineDetailPage: React.FC = () => {
           {/* Quick Details & Inquire */}
           <div className="lg:col-span-5 space-y-5">
             <div>
-              <span className="inline-block px-2.5 py-1 bg-[#004669] text-white text-[11px] font-roboto font-bold uppercase tracking-wider rounded mb-2">
-                {machine.condition} Machinery
-              </span>
+              <div className="flex flex-wrap gap-2 mb-2">
+                <span className="inline-block px-2.5 py-1 bg-[#004669] text-white text-[11px] font-roboto font-bold uppercase tracking-wider rounded">
+                  {machine.condition} Machinery
+                </span>
+                <span className="inline-block px-2.5 py-1 bg-[#25D366] text-white text-[11px] font-roboto font-bold uppercase tracking-wider rounded">
+                  Available to Import on Order
+                </span>
+              </div>
               <h2 className="font-heading text-2xl font-bold text-[#435363] leading-tight">
                 {machine.name}
               </h2>

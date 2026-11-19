@@ -123,7 +123,7 @@ export const AboutPage: React.FC = () => {
               </span>
             </div>
             <Link
-              to="/stock-list?cat=notebook"
+              to="/we-import?cat=notebook"
               className="px-4 py-2 bg-[#004669] text-white font-roboto font-bold uppercase tracking-wider rounded text-[11px] hover:bg-[#003854] whitespace-nowrap"
             >
               Explore Notebook Machines »

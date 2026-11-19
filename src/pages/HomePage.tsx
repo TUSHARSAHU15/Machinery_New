@@ -64,7 +64,7 @@ export const HomePage: React.FC = () => {
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail) return;
-    const msg = `Hello Machinery Hub, please subscribe my email: ${newsletterEmail} to your machinery stock updates and catalogues.`;
+    const msg = `Hello Machinery Hub, please subscribe my email: ${newsletterEmail} to your machinery import catalogues and updates.`;
     window.open(getWhatsAppUrl(msg), '_blank');
     toast.success('Thank you! Redirecting to WhatsApp with your subscription.');
     setNewsletterEmail('');
@@ -104,10 +104,10 @@ export const HomePage: React.FC = () => {
 
           <div className="mt-4 flex flex-wrap gap-2.5">
             <Link
-              to="/stock-list"
+              to="/we-import"
               className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#004669] hover:bg-[#003854] text-white text-xs font-bold uppercase tracking-wider font-roboto rounded transition border border-white/20"
             >
-              Explore Stock List <ArrowRight className="h-3.5 w-3.5" />
+              Explore Machinery We Import <ArrowRight className="h-3.5 w-3.5" />
             </Link>
             <a
               href={getWhatsAppUrl(`Hello Mr. Anand Karna ji, I am interested in ${slides[currentSlide].title}`)}
@@ -202,7 +202,7 @@ export const HomePage: React.FC = () => {
                     10 core machinery divisions serving printing, paper, notebook & packaging industries
                   </p>
                 </div>
-                <Link to="/stock-list" className="cg-read-more">
+                <Link to="/we-import" className="cg-read-more">
                   View Catalog »
                 </Link>
               </div>
@@ -218,7 +218,7 @@ export const HomePage: React.FC = () => {
                         0{idx + 1}.
                       </span>
                       <Link
-                        to={`/stock-list?cat=${cat.slug}`}
+                        to={`/we-import?cat=${cat.slug}`}
                         className="font-heading font-bold text-xs text-[#435363] hover:text-[#004669] transition flex-1 leading-snug"
                       >
                         {cat.name}
@@ -237,7 +237,7 @@ export const HomePage: React.FC = () => {
 
                     <div className="pt-2 text-right">
                       <Link
-                        to={`/stock-list?cat=${cat.slug}`}
+                        to={`/we-import?cat=${cat.slug}`}
                         className="text-[10px] font-roboto font-bold uppercase tracking-wider text-[#336699] hover:underline"
                       >
                         Inquire Machines »
@@ -274,12 +274,12 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Featured Machinery in Stock Strip */}
+            {/* Featured Machinery We Import Strip */}
             <div>
               <div className="flex items-center justify-between mb-4 border-b border-[#eef2f5] pb-2">
-                <h2 className="cg-title !mb-0">Featured Machinery & Production Lines</h2>
-                <Link to="/stock-list" className="cg-read-more">
-                  View Full Stock List »
+                <h2 className="cg-title !mb-0">Featured Machinery We Import</h2>
+                <Link to="/we-import" className="cg-read-more">
+                  View All Machinery We Import »
                 </Link>
               </div>
 
@@ -299,6 +299,9 @@ export const HomePage: React.FC = () => {
                         />
                         <span className="absolute top-2.5 left-2.5 bg-[#004669] text-white text-[10px] font-roboto font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
                           {machine.condition}
+                        </span>
+                        <span className="absolute bottom-2.5 left-2.5 bg-[#25D366] text-white text-[9px] font-roboto font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
+                          Available to Import
                         </span>
                         <span className="absolute top-2.5 right-2.5 bg-[#F5FAFE] text-[#004669] border border-[#e1e8ed] text-[10px] font-roboto font-bold px-2 py-0.5 rounded shadow-xs">
                           {machine.model}
@@ -399,7 +402,7 @@ export const HomePage: React.FC = () => {
                     <div key={cat.slug} className="cg-list-item">
                       <div className="flex items-center justify-between py-1">
                         <Link
-                          to={`/stock-list?cat=${cat.slug}`}
+                          to={`/we-import?cat=${cat.slug}`}
                           className="cg-list-link text-[13px] leading-snug flex-1"
                         >
                           » {cat.name}
@@ -426,7 +429,7 @@ export const HomePage: React.FC = () => {
                           {cat.subcategories.map((sub, sIdx) => (
                             <li key={sIdx}>
                               <Link
-                                to={`/stock-list?cat=${cat.slug}`}
+                                to={`/we-import?cat=${cat.slug}`}
                                 className="hover:text-[#004669] transition block py-0.5"
                               >
                                 • {sub}
@@ -447,7 +450,7 @@ export const HomePage: React.FC = () => {
             <div className="bg-[#F5FAFE] p-5 rounded border border-[#e1e8ed]">
               <h2 className="cg-title !mb-2">Subscribe Newsletter</h2>
               <p className="text-[12px] text-[#8997a5] mb-3 leading-relaxed">
-                Stay updated with our latest imported machinery stock, pre-owned arrivals, and notebook manufacturing solutions.
+                Stay updated with the latest machinery we import, pre-owned arrivals from Germany & Japan, and notebook manufacturing solutions.
               </p>
               <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2">
                 <input

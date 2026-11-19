@@ -17,6 +17,8 @@ export const App: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/index" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/we-import" element={<StockListPage />} />
+          <Route path="/machinery-we-import" element={<StockListPage />} />
           <Route path="/stock-list" element={<StockListPage />} />
           <Route path="/stock_list2" element={<StockListPage />} />
           <Route path="/machines" element={<StockListPage />} />

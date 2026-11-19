@@ -28,7 +28,7 @@ export const MachineCard: React.FC<{ m: Machine }> = ({ m }) => {
               m.available ? 'bg-whatsapp text-steel-foreground' : 'bg-muted text-muted-foreground'
             }`}
           >
-            {m.available ? 'In Stock' : 'On Order'}
+            {m.available ? 'Available to Import' : 'On Order'}
           </span>
         </div>
       </div>

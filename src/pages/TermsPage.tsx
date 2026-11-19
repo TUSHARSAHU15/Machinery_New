@@ -29,7 +29,7 @@ export const TermsPage: React.FC = () => {
             <h2 className="text-xl font-bold text-foreground">2. Machine Quotations & Availability</h2>
             <ul className="mt-2 list-disc pl-6 space-y-1">
               <li>All quotations provided via email, WhatsApp, or formal proposal are valid for the timeframe stated in the proposal.</li>
-              <li>Stock machines in Nepal are offered on a first-come, first-served basis subject to prior sale.</li>
+              <li>All machinery is imported and supplied directly on order from verified international sources (Germany, Japan, India) and authorized factory dealerships according to customer specifications.</li>
               <li>Imported machines are subject to international freight, customs clearance, and lead times communicated at order confirmation.</li>
             </ul>
           </div>

@@ -35,19 +35,29 @@ export const StockListPage: React.FC = () => {
       <div className="bg-[#003854] text-white py-8 px-6 md:px-10 border-b-4 border-[#e8b328]">
         <div className="max-w-4xl">
           <p className="text-[11px] font-roboto font-bold uppercase tracking-wider text-[#e8b328] mb-1">
-            <Link to="/" className="hover:underline">Home</Link> / Stock List
+            <Link to="/" className="hover:underline">Home</Link> / We Import
           </p>
           <h1 className="font-heading text-2xl md:text-3xl font-extrabold text-white">
-            Machinery Stock List & Product Range
+            Machinery We Import
           </h1>
           <p className="mt-2 text-xs md:text-sm text-gray-200">
-            Brand-New, Quality-Tested Pre-Owned & Refurbished Printing, Notebook, Cutting, Binding and Packaging Machinery
+            Brand-New & Quality-Tested Pre-Owned Machinery Imported Directly on Order from Germany, Japan & India across Nepal
           </p>
         </div>
       </div>
 
       <div className="p-6 md:p-8 space-y-6">
-        {/* Category Filter Pills (All 10 Categories) */}
+        {/* Direct Import Model Notice Banner */}
+        <div className="p-4 bg-[#F5FAFE] border-l-4 border-[#004669] rounded-r-lg text-xs text-[#435363] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs">
+          <div>
+            <span className="font-bold text-[#004669] uppercase tracking-wide">📦 Direct Import-On-Order Model:</span>{' '}
+            <span className="text-[#666666]">
+              We source and import every machine directly based on your production capacity, size, and colour configuration requirements. Each machine undergoes thorough mechanical audit, trial inspection, safe delivery to your doorstep in Nepal, and full on-site installation with operator training.
+            </span>
+          </div>
+        </div>
+
+        {/* Category Filter Pills (All 9 Categories) */}
         <div className="flex flex-wrap gap-2 pb-4 border-b border-[#eef2f5]">
           <button
             onClick={() => handleCategoryChange('all')}
@@ -57,7 +67,7 @@ export const StockListPage: React.FC = () => {
                 : 'bg-[#F5FAFE] text-[#666666] hover:bg-[#004669]/10'
             }`}
           >
-            All Categories ({MACHINES.length})
+            All Machinery We Import ({MACHINES.length})
           </button>
           {CATEGORIES.map((cat, idx) => {
             const count = MACHINES.filter((m) => m.category === cat.slug).length;
@@ -115,6 +125,9 @@ export const StockListPage: React.FC = () => {
                 />
                 <span className="absolute top-2.5 left-2.5 bg-[#004669] text-white font-roboto text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
                   {machine.condition}
+                </span>
+                <span className="absolute bottom-2.5 left-2.5 bg-[#25D366] text-white font-roboto text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">
+                  Available to Import
                 </span>
                 <span className="absolute top-2.5 right-2.5 bg-[#F5FAFE] text-[#004669] border border-[#e1e8ed] text-[10px] font-roboto font-bold px-2 py-0.5 rounded shadow-xs">
                   Model: {machine.model}

@@ -28,36 +28,36 @@ export const Footer: React.FC = () => {
           {/* Col 2: Services / Machinery */}
           <div>
             <h4 className="font-heading text-sm font-bold uppercase tracking-wider text-[#435363] mb-2">
-              Our Machinery
+              Machinery We Import
             </h4>
             <ul className="space-y-1.5">
               <li>
-                <Link to="/stock-list?cat=offset" className="hover:text-[#004669] transition">
+                <Link to="/we-import?cat=offset" className="hover:text-[#004669] transition">
                   » Pre-Owned Offset Presses (1-8 Colours)
                 </Link>
               </li>
               <li>
-                <Link to="/stock-list?cat=notebook" className="hover:text-[#004669] transition">
+                <Link to="/we-import?cat=notebook" className="hover:text-[#004669] transition">
                   » Stallion 3-in-1 Notebook Machines
                 </Link>
               </li>
               <li>
-                <Link to="/stock-list?cat=notebook" className="hover:text-[#004669] transition">
+                <Link to="/we-import?cat=notebook" className="hover:text-[#004669] transition">
                   » Chetan & Harbhajan Notebook Lines
                 </Link>
               </li>
               <li>
-                <Link to="/stock-list?cat=offset" className="hover:text-[#004669] transition">
+                <Link to="/we-import?cat=offset" className="hover:text-[#004669] transition">
                   » Authorized Dealer: Autoprint & Sahil
                 </Link>
               </li>
               <li>
-                <Link to="/stock-list?cat=cutting" className="hover:text-[#004669] transition">
-                  » Polar & Itoh Paper Cutters
+                <Link to="/we-import?cat=cutting-processing" className="hover:text-[#004669] transition">
+                  » Polar, Semi-Auto & Manual Cutters
                 </Link>
               </li>
               <li>
-                <Link to="/stock-list?cat=folding" className="hover:text-[#004669] transition">
+                <Link to="/we-import?cat=folding-ruling" className="hover:text-[#004669] transition">
                   » Stahl & MBO Paper Folders
                 </Link>
               </li>
@@ -137,8 +137,8 @@ export const Footer: React.FC = () => {
               About Us
             </Link>
             <span>|</span>
-            <Link to="/stock-list" className="text-[#8997a5] hover:text-[#004669] transition">
-              Stock List
+            <Link to="/we-import" className="text-[#8997a5] hover:text-[#004669] transition">
+              We Import
             </Link>
             <span>|</span>
             <Link to="/services" className="text-[#8997a5] hover:text-[#004669] transition">

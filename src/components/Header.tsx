@@ -7,7 +7,7 @@ import { COMPANY_INFO, getWhatsAppUrl } from '../data/machinery';
 export const NAV_ITEMS = [
   { to: '/', label: 'HOME', end: true },
   { to: '/about', label: 'ABOUT US' },
-  { to: '/stock-list', label: 'STOCK LIST' },
+  { to: '/we-import', label: 'WE IMPORT' },
   { to: '/services', label: 'SERVICES' },
   { to: '/contactus', label: 'CONTACT US' },
 ];

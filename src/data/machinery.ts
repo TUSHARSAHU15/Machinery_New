@@ -41,8 +41,8 @@ export const COMPANY_INFO: CompanyInfo = {
 };
 
 export const NEPALI_WELCOME_MESSAGE = `🙏 नमस्ते! Machinery Hub मा तपाईंलाई हार्दिक स्वागत छ।
-हामीबाट तपाईंले प्राप्त गर्न सक्नुहुन्छ:
-✅ Pre-Owned Offset Printing Machines (Single to 8 Colour)
+हामीबाट तपाईंले अर्डरमा सिधै आयात (Direct Import) गर्न सक्नुहुन्छ:
+✅ Pre-Owned Offset Presses: 28×40 (1-8 Col), 20×29 (1-8 Col), 19×26 (1-4 Col) & Small Sizes (10×12, 12×15, 14×19, 15×20)
 ✅ Paper Cutting Machines (Manual, Semi-Auto & Polar in sizes 32'' to 61'')
 ✅ Notebook Stitching Machines with Motor
 ✅ Edge Squaring (Port Making) Machines
@@ -83,6 +83,8 @@ export const BRANDS = [
 export const WHY_US_POINTS = [
   'Led by Mr. Anand Karna, Director, bringing over 20 years of hands-on industry experience.',
   'We operate our own notebook manufacturing facility and printing press, giving us practical first-hand knowledge of machine performance.',
+  'Direct Import on Order from Germany, Japan & India: guaranteed quality machines sourced to your exact specs without dead inventory overhead.',
+  'Offset Press Specialists: 28"×40" (1-8 Col), 20"×29" (1-8 Col), 19"×26" (1-4 Col) & Small Sizes (10×12, 12×15, 14×19, 15×20).',
   'Authorized Dealer in Nepal for renowned Autoprint and Sahil machinery brands.',
   'Complete Paper Cutting range: Manual with motor, Semi-Automatic, and Polar in sizes 32" to 61".',
   'Notebook production specialists: Motorized Stitching, Edge Squaring (Port Making), and L-Sealer Shrink Packaging.',
@@ -97,10 +99,14 @@ export const CATEGORIES: MachineCategory[] = [
     short: 'Offset Printing',
     image: IMAGES.offset,
     subcategories: [
-      'Small Offset Printing Machines',
-      'Single-Colour Offset Printing Machines',
+      '28" × 40" Offset Press (Available in 8, 6, 5, 4, 2, 1 Colour)',
+      '20" × 29" Offset Press (Available in 8, 6, 5, 4, 2, 1 Colour)',
+      '19" × 26" Offset Press (Available in 4, 2 & 1 Colour)',
+      'Small Size Offset Presses (10"×12", 12"×15", 14"×19", 15"×20")',
+      'Multi-Colour Offset Presses (4, 5, 6 & 8 Colours)',
       'Two-Colour Offset Printing Machines',
-      'Multi-Colour Offset Printing Machines',
+      'Single-Colour Offset Printing Machines',
+      'Authorized Dealer in Nepal: Autoprint & Sahil',
     ],
   },
   {
@@ -208,8 +214,8 @@ export const CATEGORIES: MachineCategory[] = [
 
 export const SERVICES: ServiceItem[] = [
   {
-    title: 'Offset Printing Machines',
-    desc: 'Supply and import of quality-tested pre-owned offset presses (Heidelberg, Komori, Ryobi, Autoprint), from single-colour to 8-colour systems.',
+    title: 'Offset Printing Machinery Import',
+    desc: 'Direct import of quality-tested pre-owned offset presses (Heidelberg, Komori, Ryobi, Autoprint, Sahil). Available in sizes: 28"×40" (1 to 8 Colour), 20"×29" (1 to 8 Colour), 19"×26" (1, 2 & 4 Colour), and Small Sizes (10"×12", 12"×15", 14"×19", 15"×20").',
   },
   {
     title: 'Paper Cutting Machines',
@@ -389,75 +395,98 @@ export const MACHINES: Machine[] = [
     support: 'Temperature calibration, conveyor setup, and operator training.',
   },
 
-  // 7. Offset Printing Machines (City Graphics Specialization)
+  // 7. Offset Printing Machinery (Sourced & Imported to Order)
   {
-    slug: 'heidelberg-speedmaster-offset',
-    name: 'Heidelberg Multi-Colour Offset Printing Press',
-    model: 'Speedmaster SM-74 / MOVP',
+    slug: 'offset-28x40-press',
+    name: '28" × 40" Offset Printing Press (8, 6, 5, 4, 2, 1 Colour)',
+    model: 'Heidelberg SM/CD 102 · Komori Lithrone 40',
     category: 'offset',
     condition: 'Used',
     available: true,
-    capacity: '12,000 – 15,000 sheets / hour',
-    capacityValue: 12000,
+    capacity: '13,000 – 15,000 sheets / hour',
+    capacityValue: 15000,
+    price: null,
+    power: '3 Phase, 415V, 45 kW',
+    dimensions: '10.5 m × 3.6 m × 2.2 m',
+    description:
+      'Full-size heavy-duty commercial and packaging offset printing presses imported directly on order from Germany, Europe, and Japan. Available in 1, 2, 4, 5, 6, and 8 colour units with CPC/PQC computer controls, continuous dampening, perfecting options, and infrared/UV dryers.',
+    images: [IMAGES.offset, IMAGES.hero],
+    specs: [
+      ['Available Size', '28" × 40" (720 × 1020 mm)'],
+      ['Colours Available', '8, 6, 5, 4, 2 & 1 Colour Configurations'],
+      ['Top Brands Imported', 'HEIDELBERG, KOMORI, MITSUBISHI, KBA'],
+      ['Import Status', 'Import Directly on Order with Complete Pre-Inspection'],
+    ],
+    support: 'Pre-shipment inspection report, safe transport to Nepal, foundation setup, precision leveling, and operator training.',
+  },
+  {
+    slug: 'offset-20x29-press',
+    name: '20" × 29" Offset Printing Press (8, 6, 5, 4, 2, 1 Colour)',
+    model: 'Heidelberg SM-74/CD-74 · Komori Lithrone 28/29',
+    category: 'offset',
+    condition: 'Used',
+    available: true,
+    capacity: '13,000 – 15,000 sheets / hour',
+    capacityValue: 13000,
     price: null,
     power: '3 Phase, 415V, 32 kW',
     dimensions: '7.8 m × 3.1 m × 2.0 m',
     description:
-      'Quality-tested pre-owned Heidelberg offset printing press. Inspected cylinders, continuous Alcolor dampening, digital CPC console, and precision dot registration for high-end commercial print jobs.',
+      'The most versatile half-size offset printing press, ideal for publishing, textbook printing, high-end commercial jobs, packaging cartons, and calendars. Imported directly on order in configurations ranging from single-colour to 8-colour presses.',
     images: [IMAGES.offset, IMAGES.hero],
     specs: [
-      ['Make / Brand', 'HEIDELBERG (Germany)'],
-      ['Colours Available', 'Single-Colour, Two-Colour & Multi-Colour (4-Colour)'],
-      ['Max Sheet Size', '520 × 740 mm'],
-      ['Condition', 'Pre-Owned, Fully Inspected, Serviced & Tested'],
+      ['Available Size', '20" × 29" (520 × 740 mm)'],
+      ['Colours Available', '8, 6, 5, 4, 2 & 1 Colour Configurations'],
+      ['Top Brands Imported', 'HEIDELBERG (Speedmaster), KOMORI (Lithrone), RYOBI'],
+      ['Import Status', 'Import Directly on Order with Complete Pre-Inspection'],
     ],
-    support: 'Complete installation, colour calibration, test runs, and operator training.',
+    support: 'Full electrical connection, cylinder certification, test runs, and hands-on press operator training.',
   },
   {
-    slug: 'komori-lithrone-offset-press',
-    name: 'Komori Lithrone High-Speed Offset Press',
-    model: 'Lithrone L-26 / L-28 / Spica',
+    slug: 'offset-19x26-press',
+    name: '19" × 26" Offset Printing Press (4, 2 & 1 Colour)',
+    model: 'Komori Sprint / L-26 · Heidelberg MO/MOVP · Ryobi',
     category: 'offset',
     condition: 'Used',
     available: true,
-    capacity: '13,000 sheets / hour',
-    capacityValue: 13000,
+    capacity: '10,000 – 12,000 sheets / hour',
+    capacityValue: 11000,
     price: null,
-    power: '3 Phase, 415V, 28 kW',
-    dimensions: '6.9 m × 2.8 m × 2.0 m',
+    power: '3 Phase, 415V, 22 kW',
+    dimensions: '5.8 m × 2.6 m × 1.9 m',
     description:
-      'Renowned Japanese Komori Lithrone series offset press. Superb ink laydown, rapid makeready, heavy cast frame, and exceptional reliability for commercial and packaging printers.',
+      'Popular medium-format offset press providing low makeready waste and high running speed. Ideal for printing presses in Nepal printing magazines, books, government forms, brochures, and stationery. Available in 1, 2, and 4 colour options.',
     images: [IMAGES.offset, IMAGES.hero],
     specs: [
-      ['Make / Brand', 'KOMORI (Japan)'],
-      ['Colours Available', 'Two-Colour & Multi-Colour (4 to 6 Colours)'],
-      ['Max Sheet Size', '520 × 720 mm'],
-      ['Feeder', 'High-Speed Stream Feeder'],
+      ['Available Size', '19" × 26" (480 × 660 mm)'],
+      ['Colours Available', '4, 2 & 1 Colour Configurations'],
+      ['Top Brands Imported', 'KOMORI, HEIDELBERG, RYOBI, ADAST'],
+      ['Import Status', 'Import Directly on Order with Complete Pre-Inspection'],
     ],
-    support: 'Mechanical audit, cylinder certification, on-site commissioning, and training.',
+    support: 'On-site installation, rubber roller alignment, dampening setup, and operational guidance.',
   },
   {
-    slug: 'autoprint-offset-press',
-    name: 'Autoprint Sheet-Fed Offset Press',
-    model: 'Autoprint 1520',
+    slug: 'small-size-offset-presses',
+    name: 'Small Size Offset Printing Presses (10×12, 12×15, 14×19, 15×20)',
+    model: 'Autoprint 1520 · Sahil Mini · Hamada · Ryobi',
     category: 'offset',
     condition: 'New',
     available: true,
-    capacity: '8,000 sheets / hour',
+    capacity: '6,000 – 8,000 sheets / hour',
     capacityValue: 8000,
     price: null,
-    power: '3 Phase, 415V, 5 kW',
+    power: 'Single Phase / 3 Phase, 415V, 5 kW',
     dimensions: '2.8 m × 1.4 m × 1.4 m',
     description:
-      'Machinery Hub is an Authorized Dealer for Autoprint in Nepal. High-speed single-colour offset press designed for commercial printing, stationery, books, and forms.',
+      'High-speed compact small offset printing machines designed for rapid turnaround printing of bill books, registers, school exam papers, invoice forms, letterheads, envelopes, and pamphlets. Machinery Hub is an Authorized Dealer for Autoprint and Sahil in Nepal.',
     images: [IMAGES.offset, IMAGES.hero],
     specs: [
-      ['Dealership Status', 'Authorized Dealer in Nepal'],
-      ['Type', 'Single-Colour / Small Offset'],
-      ['Max Sheet Size', '380 × 508 mm (15" × 20")'],
-      ['Paper Thickness', '30 to 300 GSM'],
+      ['Small Sizes Available', '10" × 12", 12" × 15", 14" × 19" & 15" × 20"'],
+      ['Colours & Type', 'Single-Colour & Two-Colour / Compact & Tabletop'],
+      ['Authorized Dealership', 'Official Dealer for AUTOPRINT & SAHIL in Nepal'],
+      ['Import Status', 'Brand-New & Inspected Pre-Owned Ready to Order'],
     ],
-    support: 'Official factory warranty, installation, and genuine Autoprint parts.',
+    support: 'Authorized factory warranty, genuine spare parts availability, on-site setup, and training.',
   },
   {
     slug: 'stallion-3-in-1-notebook',
@@ -533,16 +562,20 @@ export const formatPrice = (price: number | null) =>
 
 export const FAQS: FaqItem[] = [
   {
+    q: 'What sizes and colour configurations of Offset Printing Machines do you import?',
+    a: 'We import and supply pre-owned and new offset printing machines in all standard industry sizes: 1) 28" × 40" available in 8, 6, 5, 4, 2, and 1 Colour (Heidelberg SM/CD 102, Komori Lithrone 40); 2) 20" × 29" available in 8, 6, 5, 4, 2, and 1 Colour (Heidelberg SM/CD 74, Komori Lithrone 28/29); 3) 19" × 26" available in 4, 2, and 1 Colour (Komori Sprint, Heidelberg MOVP, Ryobi); and 4) Small Sizes in 10" × 12", 12" × 15", 14" × 19", and 15" × 20" (Autoprint & Sahil authorized dealership, Hamada, Ryobi).',
+  },
+  {
+    q: 'Do you keep machinery stock in Nepal or import on order?',
+    a: 'We do not keep idle machinery sitting in a warehouse. Instead, we operate on a direct import-on-order model. We inspect, verify, and import machines directly from Germany, Japan, and leading manufacturers in India tailored to your exact production requirements, budget, size, and colour preferences. This guarantees you receive clean, fully tested machinery with transparent performance history and competitive pricing.',
+  },
+  {
     q: 'What sizes of Paper Cutting Machines do you supply?',
     a: 'We supply: 1) Manual Type with Motor in sizes 32", 36", 42", 48", 52" & 60"; 2) Semi-Automatic Paper Cutting Machines in sizes 33", 37", 43", 49", 53" & 61"; and 3) Polar Computerized High-Speed Cutters in sizes 33", 37", 43", 49", 53" & 61".',
   },
   {
     q: 'What specialized notebook making machinery do you supply?',
     a: 'We supply: Notebook Stitching Machines with Motor, Edge Squaring (Port Making) Machines for square paperback spines, Notebook Packing Machines (L-Sealers with continuous shrink tunnels), India’s leading Stallion 3-in-1 machines with German heads, and Chetan & Harbhajan notebook solutions.',
-  },
-  {
-    q: 'What offset printing machines do you supply like City Graphics?',
-    a: 'Just like City Graphics, we specialize in high-quality pre-owned offset printing machinery from Heidelberg, Komori (Lithrone / Spica), Ryobi, Adast, and Hamada, from single-colour presses to advanced multi-colour systems. Additionally, we are the Authorized Dealer for Autoprint and Sahil in Nepal.',
   },
   {
     q: 'What makes Machinery Hub different from other machinery traders in Nepal?',
