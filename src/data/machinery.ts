@@ -18,7 +18,7 @@ export const IMAGES = {
   polarCutter: '/assets/machines/polar-paper-cutter.png',
   stitchingMotor: '/assets/machines/notebook-stitching-motor.jpg',
   edgeSquaring: '/assets/machines/edge-squaring-port-making.jpg',
-  lSealer: '/assets/machines/l-sealer-shrink-tunnel.jpg',
+  lSealer: '/assets/machines/l-sealer-shrink-tunnel-hd.jpg',
   nonWovenBagPrinter: '/assets/machines/non-woven-bag-printing-machine.jpg',
   fiberBagMaker: '/assets/machines/fiber-bag-making-machine.jpg',
   paperPressingMachine: '/assets/machines/paper-pressing-machine.jpg',
