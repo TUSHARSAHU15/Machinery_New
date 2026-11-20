@@ -29,7 +29,7 @@ export const IMAGES = {
   hardCaseMaker: '/assets/machines/hard-case-making-machine.jpg',
   fileMaster: '/assets/machines/file-master-machine.jpg',
   glueBinding1Clamp: '/assets/machines/glue-binding-1-clamp.jpg',
-  glueBindingMultiClamp: '/assets/machines/glue-binding-multi-clamp.jpg',
+  glueBindingMultiClamp: '/assets/machines/glue-binding-multi-clamp-hd.jpg',
   paperGluingMachine: '/assets/machines/paper-gluing-machine.jpg',
   rotaryCreasingMachine: '/assets/machines/rotary-creasing-machine.jpg',
   platenDieCutter: '/assets/machines/platen-die-cutting-machine.jpg',
