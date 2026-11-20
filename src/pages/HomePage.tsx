@@ -296,13 +296,13 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Our Complete Product Range (All 10 Categories Breakdown) */}
+            {/* Our Complete Product Range (All 8 Categories Breakdown) */}
             <div className="pt-2">
               <div className="flex items-center justify-between mb-4 border-b border-[#eef2f5] pb-2">
                 <div>
                   <h2 className="cg-title !mb-0">Our Complete Product Range</h2>
                   <p className="text-xs text-[#8997a5] mt-0.5">
-                    10 core machinery divisions serving printing, paper, notebook & packaging industries
+                    8 core machinery divisions serving printing, paper, notebook & packaging industries
                   </p>
                 </div>
                 <Link to="/we-import" className="cg-read-more">
@@ -356,7 +356,7 @@ export const HomePage: React.FC = () => {
           {/* RIGHT COLUMN: col-md-4 */}
           <div className="lg:col-span-4 space-y-8">
             
-            {/* 1. Products Categories (All 10 Categories) */}
+            {/* 1. Products Categories (All 8 Categories) */}
             <div className="bg-white">
               <h2 className="cg-title">Products Categories</h2>
               <div className="space-y-1">

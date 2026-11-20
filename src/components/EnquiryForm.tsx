@@ -179,7 +179,6 @@ export const EnquiryForm: React.FC<{ defaultMachine?: string }> = ({
             <option value="6. Book Binding & Finishing Machinery">6. Book Binding & Finishing Machinery</option>
             <option value="7. Paper & Packaging Machinery">7. Paper & Packaging Machinery</option>
             <option value="8. Non-Woven & Fiber Bag Manufacturing Machinery">8. Non-Woven & Fiber Bag Manufacturing Machinery</option>
-            <option value="9. Other Printing & Allied Machinery">9. Other Printing & Allied Machinery</option>
           </select>
         </div>
       </div>
